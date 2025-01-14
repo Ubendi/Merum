@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AddWineDTO, WinesService } from '../../../services/wines.service'; 
+import { AddWineDTO, WinesService } from '../../../../services/wines.service'; 
 import { HttpClientModule } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
