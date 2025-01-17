@@ -1,3 +1,3 @@
-<div *ngFor="let wine of wines">
-    <app-wine-card [wine] = "wine"></app-wine-card>
+<div class="wine-list">
+    <app-wine-card *ngFor="let wine of wines" [wine] = "wine"></app-wine-card>
 </div>
