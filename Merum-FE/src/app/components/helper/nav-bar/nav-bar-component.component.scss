@@ -1,0 +1,27 @@
+/* nav-bar.component.scss */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    margin: 0;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
