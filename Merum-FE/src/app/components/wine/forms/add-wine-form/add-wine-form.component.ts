@@ -19,7 +19,8 @@ export class AddWineFormComponent {
     name: 'Test',
     year: 2023,
     alcohol: 12.3,
-    locationEntityId: 1
+    locationEntityId: 1,
+    picturePath: ''
   };
 
   constructor(private wineService: WinesService){}

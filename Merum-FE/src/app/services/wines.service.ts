@@ -10,14 +10,16 @@ export interface WineDTO {
   name: string,
   year: number,
   alcohol: number,
-  location: LocationDTO
+  location: LocationDTO,
+  picturePath: string
 }
 
 export interface AddWineDTO {
   name: string,
   year: number,
   alcohol: number,
-  locationEntityId: number
+  locationEntityId: number,
+  picturePath: string
 }
 
 @Injectable({
@@ -28,6 +30,10 @@ export class WinesService {
   private apiUrl = `${environment.apiUrl}/wines`;
 
   constructor(private http: HttpClient) { }
+
+  getWineById(id: number): Observable<WineDTO>{
+    return this.http.get<WineDTO>(`${this.apiUrl}/getWineById/${id}`);
+  }
 
   addWine(addWineDTO: AddWineDTO): Observable<WineDTO>{
     return this.http.post<WineDTO>(`${this.apiUrl}/addWine`, addWineDTO);
