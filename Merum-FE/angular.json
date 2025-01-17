@@ -44,7 +44,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src'/environments/environment.prod.ts"
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "budgets": [
@@ -71,6 +71,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "merum-fe:build:production"

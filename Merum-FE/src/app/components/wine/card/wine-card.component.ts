@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 
 
 export class WineCardComponent implements OnInit {
-  wine!: WineDTO;
+  @Input() wine!: WineDTO;
 
   constructor(
     private winesService: WinesService,

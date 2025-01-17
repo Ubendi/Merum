@@ -31,6 +31,10 @@ export class WinesService {
 
   constructor(private http: HttpClient) { }
 
+  getAllWines(): Observable<WineDTO[]>{
+    return this.http.get<WineDTO[]>(`${this.apiUrl}/getAllWines`);
+  }
+
   getWineById(id: number): Observable<WineDTO>{
     return this.http.get<WineDTO>(`${this.apiUrl}/getWineById/${id}`);
   }
