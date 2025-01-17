@@ -3,11 +3,13 @@ import { WineCardComponent } from '../../card/wine-card.component';
 import { WinesService } from '../../../../services/wines.service';
 import { WineDTO } from '../../../../services/wines.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-wine-list',
   standalone: true,
-  imports: [CommonModule, WineCardComponent],
+  imports: [CommonModule, WineCardComponent,RouterModule],
   templateUrl: './wine-list.component.html',
   styleUrl: './wine-list.component.scss'
 })

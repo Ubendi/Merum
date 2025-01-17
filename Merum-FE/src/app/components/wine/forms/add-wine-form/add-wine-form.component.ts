@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { AddWineDTO, WinesService } from '../../../../services/wines.service'; 
 import { HttpClientModule } from '@angular/common/http';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
-import { response } from 'express';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-add-wine-form',
   standalone: true,
-  imports: [HttpClientModule, FormsModule],
+  imports: [HttpClientModule, FormsModule, RouterModule],
   templateUrl: './add-wine-form.component.html',
   styleUrl: './add-wine-form.component.scss'
 })
 export class AddWineFormComponent {
+
   addWineDTO: AddWineDTO = {
     name: 'Test',
     year: 2023,
@@ -23,12 +22,17 @@ export class AddWineFormComponent {
     picturePath: ''
   };
 
-  constructor(private wineService: WinesService){}
+  constructor(
+    private wineService: WinesService,
+    private router: Router
+  ){}
 
   onSubmit(){
     this.wineService.addWine(this.addWineDTO).subscribe(response => {
-      console.log('Wine added succesfully', response);
+      alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
+      this.router.navigate(['/wines']);
     }, error => {
+      alert('Hiba történt');
       console.error('Error adding wine', error);
     });
   }

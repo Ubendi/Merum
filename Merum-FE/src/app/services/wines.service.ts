@@ -42,4 +42,8 @@ export class WinesService {
   addWine(addWineDTO: AddWineDTO): Observable<WineDTO>{
     return this.http.post<WineDTO>(`${this.apiUrl}/addWine`, addWineDTO);
   }
+
+  deleteWine(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/deleteWineById/${id}`);
+  }
 }

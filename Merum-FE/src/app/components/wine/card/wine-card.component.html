@@ -1,6 +1,6 @@
 <div class="wine-card" *ngIf="wine">
     <img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image" width="10%">
-    <h2>{{ wine.name }} ({{ wine.year }})</h2>
+    <h2><a [routerLink]="['/wines',wine.id]">{{ wine.name }} ({{ wine.year }})</a></h2>
     <p>Alcohol Content: {{ wine.alcohol }}%</p> 
     <p>Location: {{ wine.location.name }}</p>
 </div>
