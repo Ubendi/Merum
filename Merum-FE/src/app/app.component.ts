@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AddWineFormComponent } from './components/forms/wine/add-wine-form/add-wine-form.component';
+import { AddWineFormComponent } from './components/wine/forms/add-wine-form/add-wine-form.component';
 
 @Component({
   selector: 'app-root',
