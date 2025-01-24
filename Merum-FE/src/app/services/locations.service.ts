@@ -28,6 +28,11 @@ export class LocationsService {
   constructor(private http: HttpClient) { }
 
   addLocation(addLocationDTO: AddLocationDTO): Observable<LocationDTO>{
-    return this.http.post<LocationDTO>(`${this.apiUrl}/addLocation`, addLocationDTO);
+    return this.http.post<LocationDTO>(`${this.apiUrl}/locations/addLocation`, addLocationDTO);
   }
+
+  getAllLocations(): Observable<LocationDTO[]>{
+    return this.http.get<LocationDTO[]>(`${this.apiUrl}/locations/getAllLocations`);
+  }
+
 }
