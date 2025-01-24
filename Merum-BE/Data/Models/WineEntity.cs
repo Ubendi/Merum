@@ -17,6 +17,7 @@ namespace Merum_BE.Data.Models
         public int LocationEntityId { get; set; }
         [ForeignKey("LocationEntityId")]
         public required LocationEntity LocationEntity { get; set; }
+        public string? PicturePath { get; set; }
     }
 
     public interface IWineRepository

@@ -65,6 +65,9 @@ namespace Merum_BE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PicturePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Merum_BE.Data.Models;
+using Merum_BE.Migrations;
 using System.ComponentModel.DataAnnotations;
 
 namespace Merum_BE.DTO
@@ -11,6 +12,7 @@ namespace Merum_BE.DTO
         public int Year { get; set; }
         public float Alcohol { get; set; }
         public LocationDTO Location { get; set; }
+        public string? PicturePath { get; set; }
     }
     public class AddWineDTO
     {
@@ -19,6 +21,7 @@ namespace Merum_BE.DTO
         public int Year { get; set; }
         public float Alcohol { get; set; }
         public int LocationEntityId { get; set; }
+        public string? PicturePath { get; set; }
     }
 
     public class UpdateWineDTO
@@ -29,5 +32,6 @@ namespace Merum_BE.DTO
         public int Year { get; set; }
         public float Alcohol { get; set; }
         public int LocationEntityId { get; set; }
+        public string? PicturePath { get; set; }
     }
 }
