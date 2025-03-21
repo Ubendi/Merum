@@ -59,7 +59,7 @@ export class AddWineFormComponent implements OnInit {
   addWine(){
     this.winesService.addWine(this.addWineDTO).subscribe(response => {
       alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
-      this.router.navigate(['/wines']);
+      this.router.navigate(['/borok']);
     }, error => {
       alert('Hiba történt');
       console.error('Error adding wine ', error);

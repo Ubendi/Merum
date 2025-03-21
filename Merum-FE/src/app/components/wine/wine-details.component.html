@@ -1,5 +1,9 @@
-<img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image" height="300px">
-<h2>{{ wine.name }} ({{ wine.year }})</h2>
-<p>Alcohol Content: {{ wine.alcohol }}%</p> 
-<p>Location: {{ wine.location.name }}</p>
-<button (click)="deleteWine()">Törlés</button>
+<div *ngIf="wine">
+    <img [src]="wine.picturePath" alt="{{ wine?.name }}" class="wine-card-image" height="300px">
+    <h2>{{ wine.name }} ({{ wine.year }})</h2>
+    <p>Alcohol Content: {{ wine.alcohol }}%</p> 
+    <p>Location: {{ wine.location.name }}</p>
+    <button (click)="deleteWine()">Törlés</button>
+    <button (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+</div>
+

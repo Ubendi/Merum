@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Szerk </h2>
+    <form (ngSubmit)="onSubmit()" #wineForm="ngForm">
+      <div class="form-group">
+        <label for="name">Név:</label>
+        <input type="text" id="name" class="form-control" required maxlength="20" [(ngModel)]="updateWineDTO.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="year">Évjárat:</label>
+        <input type="number" id="year" class="form-control" [(ngModel)]="updateWineDTO.year" name="year">
+      </div>
+      <div class="form-group">
+        <label for="alcohol">Alkoholtartalom:</label>
+        <input type="number" id="alcohol" class="form-control" [(ngModel)]="updateWineDTO.alcohol" name="alcohol">
+      </div>
+      <div class="form-group">
+        <label for="locationEntityId">Régió:</label>
+        <select id="location" [(ngModel)]="updateWineDTO.locationEntityId" name="locationEntityId" required>
+          <option *ngFor="let location of locations" [value]="location.id">{{ location.name }}</option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
+        <label for="picture">Kép</label>
+        <input type="file" (change)="onPictureSelected($event)">
+      </div> -->
+      <button type="submit" class="btn btn-primary">Kész</button>
+    </form>
+  </div>
+  

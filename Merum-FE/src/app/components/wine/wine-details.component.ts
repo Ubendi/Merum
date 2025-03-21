@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WineDTO, WinesService } from '../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-wine-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './wine-details.component.html',
   styleUrl: './wine-details.component.scss'
 })
@@ -41,12 +42,16 @@ export class WineDetailsComponent implements OnInit {
       if(confirmed){
         this.winesService.deleteWine(this.wine.id).subscribe(() => {
           alert('Bor sikeresen törölve');
-          this.router.navigate(['/wines']);
+          this.router.navigate(['/borok']);
         }, error => {
           console.log('Error deleting wine:', error);
           alert('Hiba történt');
         });        
       }
     }
+  }
+
+  navigateToEditWine(wineId: number): void {
+    this.router.navigate(['/borok/szerkesztes', wineId])
   }
 }

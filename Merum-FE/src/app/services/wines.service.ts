@@ -22,6 +22,15 @@ export interface AddWineDTO {
   picturePath: string
 }
 
+export interface UpdateWineDTO {
+  id: number,
+  name: string,
+  year: number,
+  alcohol: number,
+  locationEntityId: number,
+  picturePath: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,5 +54,22 @@ export class WinesService {
 
   deleteWine(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/deleteWineById/${id}`);
+  }
+
+  updateWine(updateWineDTO: UpdateWineDTO): Observable<WineDTO>{
+    return this.http.put<WineDTO>(`${this.apiUrl}/updateWineById/${updateWineDTO.id}`, updateWineDTO)
+  }
+
+
+
+  wineDtoToUpdateWineDto(wineDTO: WineDTO): UpdateWineDTO{
+    return {
+      id: wineDTO.id,
+      name: wineDTO.name,
+      year: wineDTO.year,
+      alcohol: wineDTO.alcohol,
+      locationEntityId: wineDTO.location.id,
+      picturePath: wineDTO.picturePath
+    }
   }
 }
