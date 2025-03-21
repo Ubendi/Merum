@@ -35,11 +35,6 @@ export class AddWineFormComponent implements OnInit {
     private router: Router
   ){}
 
-  onPictureSelected(event: any): void{
-    this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile?.name)
-  }
-
   ngOnInit(){
     this.loadLocations();
   }
@@ -49,21 +44,31 @@ export class AddWineFormComponent implements OnInit {
       this.uploadService.uploadFile(this.selectedFile, 'Pics', 'Wines').subscribe(response => {
         const picturePath = response.path;
         this.addWineDTO.picturePath = picturePath;
-        return this.winesService.addWine(this.addWineDTO).subscribe(response => {
-            alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
-            this.router.navigate(['/wines']);
-          }, error => {
-            alert('Hiba történt');
-            console.error('Error adding wine', error);
-        })
+        this.addWine();
       })
+    } else {
+      this.addWine();
     }
+  }
+
+  onPictureSelected(event: any): void{
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile?.name)
+  }
+
+  addWine(){
+    this.winesService.addWine(this.addWineDTO).subscribe(response => {
+      alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
+      this.router.navigate(['/wines']);
+    }, error => {
+      alert('Hiba történt');
+      console.error('Error adding wine', error);
+  })
   }
 
   loadLocations(){
     this.locationsService.getAllLocations().subscribe(data => {
       this.locations = data;
-      console.log("Locations loaded...", this.locations);
     })
   }
 }
