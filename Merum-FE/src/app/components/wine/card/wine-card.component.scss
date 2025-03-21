@@ -4,18 +4,28 @@
     padding: 10px;
     margin: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 1000px;
+    width: 350px;
+    height: 800px;
+    font-family: 'Vollkorn', sans-serif;
   }
-  .wine-card h2 {
-    margin-top: 0;
-  }
-  .wine-card-image {
-    position: realtive;
-    left: 50%;
-    width: 100%;
-    height: auto;
+
+  .wine-card-image-container {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 600px;
     border-radius: 5px;
     margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  h2 a {
+    color: #e1752f;
+    text-decoration: none;
+    font-weight: normal;
+  }
+
+  h2 a:hover{
+    font-weight: bold;
   }
   

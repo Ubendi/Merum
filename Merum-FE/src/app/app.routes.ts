@@ -5,7 +5,7 @@ import { WineListComponent } from './components/wine/list/wine-list/wine-list.co
 import { WineDetailsComponent } from './components/wine/wine-details.component';
 
 export const routes: Routes = [
-    {path: 'wines', 
+    {path: 'borok', 
         children: [
             {path: '', component: WineListComponent},
             {path: 'addWine', component: AddWineFormComponent},

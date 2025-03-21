@@ -62,7 +62,7 @@ export class AddWineFormComponent implements OnInit {
       this.router.navigate(['/wines']);
     }, error => {
       alert('Hiba történt');
-      console.error('Error adding wine', error);
+      console.error('Error adding wine ', error);
   })
   }
 
