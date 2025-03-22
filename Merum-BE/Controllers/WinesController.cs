@@ -39,7 +39,7 @@ namespace Merum_BE.Controllers
         }
 
         //PUT
-        [HttpPut("updateWine/{id}")]
+        [HttpPut("updateWineById/{id}")]
         public async Task<WineDTO> UpdateWineAsync(UpdateWineDTO updateWineDTO)
         {
             return await _winesService.UpdateWineServiceAsync(updateWineDTO);

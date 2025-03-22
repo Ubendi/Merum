@@ -28,8 +28,10 @@ namespace Merum_BE.Controllers
             {
                 await file.CopyToAsync(stream);
             }
+            var relativePath = Path.Combine(folder, subFolder, file.FileName).Replace("\\", "/");
+            var fullUrl = $"{Request.Scheme}://{Request.Host}/{relativePath}";
 
-            return Ok(new { path = uploadPath });
+            return Ok(new { path = fullUrl });
         }
      
     }

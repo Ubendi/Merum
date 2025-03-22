@@ -36,6 +36,15 @@ namespace Merum_BE.BL
 
         public async Task<bool> DeleteWineByIdServiceAsync(WineDTO wineDTO)
         {
+            var wine = _unitOfWork.WineRepository.GetWineByIdAsync(wineDTO.Id);
+            if (wine == null)
+            {
+                return false;
+            }
+            if (!string.IsNullOrEmpty(wineDTO.PicturePath))
+            {
+ 
+            }
             _logger.LogInformation($"Deleting {wineDTO.Name}, {wineDTO.Year}...");
             return await _unitOfWork.WineRepository.DeleteWineByIdAsync(wineDTO);
         }

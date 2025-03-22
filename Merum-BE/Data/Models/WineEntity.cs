@@ -13,10 +13,13 @@ namespace Merum_BE.Data.Models
         [Required]
         public required string Name { get; set; }
         public int Year { get; set; }
-        public float Alcohol { get; set; }
+        public string? Description { get; set; }
         public int LocationEntityId { get; set; }
         [ForeignKey("LocationEntityId")]
         public required LocationEntity LocationEntity { get; set; }
+        public int? WineDetailsEntityId { get; set; }
+        [ForeignKey("WineDetailsEntityId")]
+        public WineDetailsEntity? WineDetailsEntity { get; set; }
         public string? PicturePath { get; set; }
     }
 
@@ -46,8 +49,22 @@ namespace Merum_BE.Data.Models
             var wineEntity = _dbContext.Set<WineEntity>()
                 .Include(w => w.LocationEntity)
                 .FirstOrDefault(w => w.Id == id);
-
+            if (wineEntity == null)
+            {
+                return null;
+            }
             return _mapper.Map<WineEntity, WineDTO>(wineEntity);
+        }
+
+        public async Task<WineDTO> GetWineByIdAsync(int id)
+        {
+            var wineEntity = await _dbContext.Set<WineEntity>().Include(w => w.LocationEntityId)
+                .FirstOrDefaultAsync(w => w.Id == id);
+            if (wineEntity == null)
+            {
+                return null;
+            }
+            return _mapper.Map<WineEntity, WineDTO>(wineEntity); ;
         }
 
         public async Task<WineDTO> AddWineAsync(AddWineDTO addWineDTO)
