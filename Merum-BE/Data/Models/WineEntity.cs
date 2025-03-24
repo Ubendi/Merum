@@ -17,6 +17,9 @@ namespace Merum_BE.Data.Models
         public int LocationEntityId { get; set; }
         [ForeignKey("LocationEntityId")]
         public required LocationEntity LocationEntity { get; set; }
+        public int? GrapeVarietyId { get; set; }
+        [ForeignKey("GrapeVarietyId")]
+        public required GrapeVarietyEntity GrapeVarietyEntity { get; set; }
         public float? RelativeDens { get; set; }
         public float? TotalAlc { get; set; }
         public float? RealAlc { get; set; }
@@ -48,8 +51,10 @@ namespace Merum_BE.Data.Models
 
         public List<WineDTO> GetAllWines()
         {
-            var wineEntities = _dbContext.Set<WineEntity>().
-                Include(w => w.LocationEntity).ToList();
+            var wineEntities = _dbContext.Set<WineEntity>()
+                .Include(w => w.LocationEntity)
+                .Include(w => w.GrapeVarietyEntity)
+                .ToList();
             return _mapper.Map<List<WineEntity>, List<WineDTO>>(wineEntities);
         }
 
@@ -57,12 +62,11 @@ namespace Merum_BE.Data.Models
         {
             var wineEntity = _dbContext.Set<WineEntity>()
                 .Include(w => w.LocationEntity)
+                .Include(w => w.GrapeVarietyEntity)
                 .FirstOrDefault(w => w.Id == id);
-            if (wineEntity == null)
-            {
-                return null;
-            }
-            return _mapper.Map<WineEntity, WineDTO>(wineEntity);
+            return wineEntity == null
+                ? throw new KeyNotFoundException($"Wine with ID {id} not found.")
+                : _mapper.Map<WineEntity, WineDTO>(wineEntity);
         }
 
         public async Task<WineDTO> GetWineByIdAsync(int id)

@@ -21,6 +21,23 @@ namespace Merum_BE.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Merum_BE.Data.Models.GrapeVarietyEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GrapeVarietyEntities");
+                });
+
             modelBuilder.Entity("Merum_BE.Data.Models.LocationEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -29,17 +46,41 @@ namespace Merum_BE.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Altitude")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Desc")
+                    b.Property<string>("CultivationMode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Grade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("GrapeVarietyEntityIds")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LineDistance")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Orientation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlantationMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoilType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -60,6 +101,9 @@ namespace Merum_BE.Migrations
 
                     b.Property<float?>("FreeSDiox")
                         .HasColumnType("real");
+
+                    b.Property<int?>("GrapeVarietyId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LocationEntityId")
                         .HasColumnType("int");
@@ -109,6 +153,8 @@ namespace Merum_BE.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GrapeVarietyId");
+
                     b.HasIndex("LocationEntityId");
 
                     b.ToTable("WineEntities");
@@ -116,11 +162,17 @@ namespace Merum_BE.Migrations
 
             modelBuilder.Entity("Merum_BE.Data.Models.WineEntity", b =>
                 {
+                    b.HasOne("Merum_BE.Data.Models.GrapeVarietyEntity", "GrapeVarietyEntity")
+                        .WithMany()
+                        .HasForeignKey("GrapeVarietyId");
+
                     b.HasOne("Merum_BE.Data.Models.LocationEntity", "LocationEntity")
                         .WithMany()
                         .HasForeignKey("LocationEntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("GrapeVarietyEntity");
 
                     b.Navigation("LocationEntity");
                 });

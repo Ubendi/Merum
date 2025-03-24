@@ -49,8 +49,7 @@ namespace Merum_BE.Controllers
         [HttpDelete("deleteWineById/{id}")]
         public async Task<bool> DeleteWineById(int id)
         {
-            return await _winesService
-                .DeleteWineByIdServiceAsync(GetWineById(id));
+            return await _winesService.DeleteWineByIdServiceAsync(GetWineById(id));
         }
     }
 }

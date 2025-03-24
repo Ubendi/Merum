@@ -11,6 +11,6 @@ namespace Merum_BE.Data.Context
 #pragma warning disable CS8618
         public DbSet<WineEntity> WineEntities { get; set; }
         public DbSet<LocationEntity> LocationEntities { get; set; }
-
+        public DbSet<GrapeVarietyEntity> GrapeVarietyEntities { get; set; }
     }
 }

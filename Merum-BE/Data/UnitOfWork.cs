@@ -12,6 +12,7 @@ namespace Merum_BE.Data
 
         private WineRepository? _wineRepository;
         private LocationRepository? _locationRepository;
+        private GrapeVarietyRepository? _grapeVarietyRepository;
 
         #region Constructor
         //public UnitOfWork (MerumDbContext dbContext, ILogger<UnitOfWork> logger)
@@ -43,6 +44,15 @@ namespace Merum_BE.Data
             {
                 _locationRepository ??= new LocationRepository(_dbContext, _mapper);
                 return _locationRepository;
+            }
+        }
+
+        public GrapeVarietyRepository GrapeVarietyRepository
+        {
+            get
+            {
+                _grapeVarietyRepository ??= new GrapeVarietyRepository(_dbContext, _mapper);
+                return _grapeVarietyRepository;
             }
         }
 

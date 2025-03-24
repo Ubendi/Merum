@@ -9,11 +9,15 @@ namespace Merum_BE.Data
         public MappingProfile() 
         {
             CreateMap<WineEntity, WineDTO>().
-                ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.LocationEntity));
+                ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.LocationEntity)).
+                ForMember(dest => dest.GrapeVariety, opt => opt.MapFrom(src => src.GrapeVarietyEntity));
             CreateMap<AddWineDTO, WineEntity>();
             CreateMap<UpdateWineDTO, WineEntity>();
 
             CreateMap<LocationEntity, LocationDTO>();
+            CreateMap<LocationEntity, AddLocationDTO>();
+
+            CreateMap<GrapeVarietyEntity, GrapeVarietyDTO>();
 
         }
     }
