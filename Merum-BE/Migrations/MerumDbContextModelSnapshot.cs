@@ -47,49 +47,6 @@ namespace Merum_BE.Migrations
                     b.ToTable("LocationEntities");
                 });
 
-            modelBuilder.Entity("Merum_BE.Data.Models.WineDetailsEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<float?>("FreeSDioxideMgpl")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("Ph")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("RealAlcoholPercent")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("RelativeDensity")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("TotalAcidGpl")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("TotalAlcoholPercent")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("TotalExtractGpl")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("TotalSDioxideMgpl")
-                        .HasColumnType("real");
-
-                    b.Property<float?>("VolatileAcidGpl")
-                        .HasColumnType("real");
-
-                    b.Property<int>("WineId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WineDetailsEntity");
-                });
-
             modelBuilder.Entity("Merum_BE.Data.Models.WineEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -101,6 +58,9 @@ namespace Merum_BE.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float?>("FreeSDiox")
+                        .HasColumnType("real");
+
                     b.Property<int>("LocationEntityId")
                         .HasColumnType("int");
 
@@ -108,11 +68,41 @@ namespace Merum_BE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float?>("Ph")
+                        .HasColumnType("real");
+
                     b.Property<string>("PicturePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("WineDetailsEntityId")
-                        .HasColumnType("int");
+                    b.Property<float?>("RealAlc")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("RelativeDens")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SugarFreeExtract")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TitratableAcid")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalAcid")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalAlc")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalExtract")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalSDiox")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalSugar")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("VolatileAcid")
+                        .HasColumnType("real");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -120,8 +110,6 @@ namespace Merum_BE.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LocationEntityId");
-
-                    b.HasIndex("WineDetailsEntityId");
 
                     b.ToTable("WineEntities");
                 });
@@ -134,13 +122,7 @@ namespace Merum_BE.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Merum_BE.Data.Models.WineDetailsEntity", "WineDetailsEntity")
-                        .WithMany()
-                        .HasForeignKey("WineDetailsEntityId");
-
                     b.Navigation("LocationEntity");
-
-                    b.Navigation("WineDetailsEntity");
                 });
 #pragma warning restore 612, 618
         }

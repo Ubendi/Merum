@@ -17,9 +17,18 @@ namespace Merum_BE.Data.Models
         public int LocationEntityId { get; set; }
         [ForeignKey("LocationEntityId")]
         public required LocationEntity LocationEntity { get; set; }
-        public int? WineDetailsEntityId { get; set; }
-        [ForeignKey("WineDetailsEntityId")]
-        public WineDetailsEntity? WineDetailsEntity { get; set; }
+        public float? RelativeDens { get; set; }
+        public float? TotalAlc { get; set; }
+        public float? RealAlc { get; set; }
+        public float? TotalExtract { get; set; }
+        public float? TotalAcid { get; set; }
+        public float? VolatileAcid { get; set; }
+        public float? TotalSDiox { get; set; }
+        public float? FreeSDiox { get; set; }
+        public float? Ph { get; set; }
+        public float? TotalSugar { get; set; }
+        public float? SugarFreeExtract { get; set; }
+        public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
     }
 

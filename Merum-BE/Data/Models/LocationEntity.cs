@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Merum_BE.Data.Context;
 using Merum_BE.DTO;
+using Microsoft.Build.ObjectModelRemoting;
+using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 
 namespace Merum_BE.Data.Models
@@ -12,7 +14,14 @@ namespace Merum_BE.Data.Models
         public required string Name { get; set; }
         public string? City { get; set; }
         public int Area { get; set; }
-        public string? Desc { get; set; }
+        public int Altitude { get; set; }
+        public int Year { get; set; }
+        public string? Orientation { get; set; }
+        public string? Grade { get; set; }
+        public string? CultivationMode { get; set; }
+        public string? LineDistance { get; set; }
+        public string? Plantation { get; set; }
+        public string? SoilType { get; set; }
     }
 
     public interface ILocationRepository

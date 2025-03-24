@@ -7,12 +7,14 @@ namespace Merum_BE.BL
     {
         private readonly UnitOfWork _unitOfWork;
         private readonly ILogger<WinesService> _logger;
+        private GenericService _genericService;
 
 
         public WinesService (UnitOfWork unitOfWork, ILogger<WinesService> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _genericService = new GenericService();
         }
 
         public List<WineDTO> GetAllWinesService()
@@ -43,7 +45,10 @@ namespace Merum_BE.BL
             }
             if (!string.IsNullOrEmpty(wineDTO.PicturePath))
             {
- 
+                // TODO: handle same pic for multiple
+                var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Pics", "Wines");
+                var fileName = Path.GetFileName(wineDTO.PicturePath);
+                _genericService.DeleteFile(rootPath, fileName);
             }
             _logger.LogInformation($"Deleting {wineDTO.Name}, {wineDTO.Year}...");
             return await _unitOfWork.WineRepository.DeleteWineByIdAsync(wineDTO);

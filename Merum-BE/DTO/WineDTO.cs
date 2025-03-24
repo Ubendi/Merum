@@ -11,30 +11,63 @@ namespace Merum_BE.DTO
         public required string Name { get; set; }
         public int Year { get; set; }
         public string? Description { get; set; }
-        public LocationDTO Location { get; set; }
-        public WineDetailsEntity? WineDetailsEntity { get; set; }
+        public LocationDTO? Location { get; set; }
+        public float? RelativeDens { get; set; }
+        public float? TotalAlc { get; set; }
+        public float? RealAlc { get; set; }
+        public float? TotalExtract { get; set; }
+        public float? TotalAcid { get; set; }
+        public float? VolatileAcid { get; set; }
+        public float? TotalSDiox { get; set; }
+        public float? FreeSDiox { get; set; }
+        public float? Ph { get; set; }
+        public float? TotalSugar { get; set; }
+        public float? SugarFreeExtract { get; set; }
+        public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
     }
     public class AddWineDTO
     {
-        [MaxLength(20, ErrorMessage = "Max hossz: 20 karakter")]
+        [MaxLength(50, ErrorMessage = "Max hossz: 50 karakter")]
         public required string Name { get; set; }
         public int Year { get; set; }
         public string? Description { get; set; }
         public int LocationEntityId { get; set; }
-        public int? WineDetailsEntityId { get; set; }
+        public float? RelativeDens { get; set; }
+        public float? TotalAlc { get; set; }
+        public float? RealAlc { get; set; }
+        public float? TotalExtract { get; set; }
+        public float? TotalAcid { get; set; }
+        public float? VolatileAcid { get; set; }
+        public float? TotalSDiox { get; set; }
+        public float? FreeSDiox { get; set; }
+        public float? Ph { get; set; }
+        public float? TotalSugar { get; set; }
+        public float? SugarFreeExtract { get; set; }
+        public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
     }
 
     public class UpdateWineDTO
     {
         public int Id { get; set; }
-        [MaxLength(20, ErrorMessage = "Max hossz: 20 karakter")]
+        [MaxLength(50, ErrorMessage = "Max hossz: 50 karakter")]
         public required string Name { get; set; }
         public int Year { get; set; }
         public string? Description { get; set; }
         public int LocationEntityId { get; set; }
-        public int? WineDetailsEntityId { get; set; }
+        public float? RelativeDens { get; set; }
+        public float? TotalAlc { get; set; }
+        public float? RealAlc { get; set; }
+        public float? TotalExtract { get; set; }
+        public float? TotalAcid { get; set; }
+        public float? VolatileAcid { get; set; }
+        public float? TotalSDiox { get; set; }
+        public float? FreeSDiox { get; set; }
+        public float? Ph { get; set; }
+        public float? TotalSugar { get; set; }
+        public float? SugarFreeExtract { get; set; }
+        public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
     }
 }
