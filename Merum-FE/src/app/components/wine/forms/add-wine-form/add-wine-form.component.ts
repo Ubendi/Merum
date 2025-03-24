@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddWineDTO, WinesService } from '../../../../services/wines.service'; 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
@@ -10,7 +10,7 @@ import { UploadService } from '../../../../services/generic/upload.service';
 @Component({
   selector: 'app-add-wine-form',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, RouterModule, CommonModule],
+  imports: [FormsModule, RouterModule, CommonModule],
   templateUrl: './add-wine-form.component.html',
   styleUrl: './add-wine-form.component.scss'
 })
