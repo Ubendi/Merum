@@ -21,8 +21,20 @@ export class AddWineFormComponent implements OnInit {
   addWineDTO: AddWineDTO = {
     name: 'Test',
     year: 2023,
-    alcohol: 12.3,
+    description: '',
     locationEntityId: 1,
+    relativeDens: 1,
+    totalAlc: 1,
+    realAlc: 1,
+    totalExtract: 1,
+    totalAcid: 1,
+    volatileAcid: 1,
+    totalSDiox: 1,
+    freeSDiox: 1,
+    ph: 1,
+    totalSugar: 1,
+    sugarFreeExtract:1 ,
+    titratableAcid: 1,
     picturePath: ''
   };
 
@@ -57,6 +69,7 @@ export class AddWineFormComponent implements OnInit {
   }
 
   addWine(){
+    console.log(this.addWineDTO)
     this.winesService.addWine(this.addWineDTO).subscribe(response => {
       alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
       this.router.navigate(['/borok']);

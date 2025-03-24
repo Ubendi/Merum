@@ -1,17 +1,18 @@
+<h2>Bor hozzáadása</h2>
 <div class="container">
-    <h2>Bor hozzáadása</h2>
-    <form (ngSubmit)="onSubmit()" #wineForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #wineForm="ngForm" class="form-container">
+    <div id="col1">
       <div class="form-group">
         <label for="name">Név:</label>
-        <input type="text" id="name" class="form-control" required maxlength="20" [(ngModel)]="addWineDTO.name" name="name">
+        <input type="text" id="name" class="form-control" required maxlength="50" [(ngModel)]="addWineDTO.name" name="name">
       </div>
       <div class="form-group">
         <label for="year">Évjárat:</label>
         <input type="number" id="year" class="form-control" [(ngModel)]="addWineDTO.year" name="year">
       </div>
       <div class="form-group">
-        <label for="alcohol">Alkoholtartalom:</label>
-        <input type="number" id="alcohol" class="form-control" [(ngModel)]="addWineDTO.alcohol" name="alcohol">
+        <label for="description">Leírás:</label>
+        <textarea rows="5" type="string" id="description" class="form-control" [(ngModel)]="addWineDTO.description" name="description"></textarea>
       </div>
       <div class="form-group">
         <label for="locationEntityId">Régió:</label>
@@ -24,6 +25,56 @@
         <input type="file" (change)="onPictureSelected($event)">
       </div>
       <button type="submit" class="btn btn-primary">Hozzáadás</button>
-    </form>
-  </div>
-  
+    </div>
+    <div id="col2">
+      <div class="form-group">
+        <label for="relativeDens">Relatív sűrűség:</label>
+        <input type="number" id="relativeDens" class="form-control" [(ngModel)]="addWineDTO.relativeDens" name="relativeDens">
+      </div>
+      <div class="form-group">
+        <label for="totalAlc">Összes alkoholtartalom:</label>
+        <input type="number" id="totalAlc" class="form-control" [(ngModel)]="addWineDTO.totalAlc" name="totalAlc">
+      </div>
+      <div class="form-group">
+        <label for="realAlc">Tényleges alkohol:</label>
+        <input type="number" id="realAlc" class="form-control" [(ngModel)]="addWineDTO.realAlc" name="realAlc">
+      </div>
+      <div class="form-group">
+        <label for="totalExtract">Összes extrakt:</label>
+        <input type="number" id="totalExtract" class="form-control" [(ngModel)]="addWineDTO.totalExtract" name="totalExtract">
+      </div>
+      <div class="form-group">
+        <label for="totalAcid">Összes sav:</label>
+        <input type="number" id="totalAcid" class="form-control" [(ngModel)]="addWineDTO.totalAcid" name="totalAcid">
+      </div>
+      <div class="form-group">
+        <label for="volatileAcid">Illósav:</label>
+        <input type="number" id="volatileAcid" class="form-control" [(ngModel)]="addWineDTO.volatileAcid" name="volatileAcid">
+      </div>
+      <div class="form-group">
+        <label for="totalSDiox">Összes kéndioxid:</label>
+        <input type="number" id="totalSDiox" class="form-control" [(ngModel)]="addWineDTO.totalSDiox" name="totalSDiox">
+      </div>
+      <div class="form-group">
+        <label for="freeSDiox">Szabad kéndioxid:</label>
+        <input type="number" id="freeSDiox" class="form-control" [(ngModel)]="addWineDTO.freeSDiox" name="freeSDiox">
+      </div>
+      <div class="form-group">
+        <label for="totalSugar">Összes cukor:</label>
+        <input type="number" id="totalSugar" class="form-control" [(ngModel)]="addWineDTO.totalSugar" name="totalSugar">
+      </div>
+      <div class="form-group">
+        <label for="sugarFreeExtract">Cukormentes extrakt:</label>
+        <input type="number" id="sugarFreeExtract" class="form-control" [(ngModel)]="addWineDTO.sugarFreeExtract" name="sugarFreeExtract">
+      </div>
+      <div class="form-group">
+        <label for="titratableAcid">Titrálható sav:</label>
+        <input type="number" id="titratableAcid" class="form-control" [(ngModel)]="addWineDTO.titratableAcid" name="titratableAcid">
+      </div>
+      <div class="form-group"> 
+        <label for="ph">PH:</label>
+        <input type="number" id="ph" class="form-control" [(ngModel)]="addWineDTO.ph" name="ph">
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,4 +1,17 @@
 .wine-card-image {
-    height: 300px;
-    width: 200px;
+    height: 600px;
+}
+
+.wine-details-container {
+    display: flex;
+}
+
+.infoTable {
+    justify-content: right;
+    margin-left: 30px
+}
+
+th{
+    text-align: right;
+    padding-right: 10px;
 }

@@ -1,9 +1,72 @@
-<div *ngIf="wine">
-    <img [src]="wine.picturePath" alt="{{ wine?.name }}" class="wine-card-image" height="300px">
-    <h2>{{ wine.name }} ({{ wine.year }})</h2>
-    <p>Alcohol Content: {{ wine.alcohol }}%</p> 
-    <p>Location: {{ wine.location.name }}</p>
-    <button (click)="deleteWine()">Törlés</button>
-    <button (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+<div *ngIf="wine" style="display: flex;">
+    <div id="wine-image-container">
+        <img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image">
+    </div>
+    <div>
+        <h2>{{ wine.name }} ({{ wine.year }})</h2>
+        <div class="wine-details-container">
+            <div class="wine-desc-container" style="width: 500px;">
+                <p style="margin-block-start: 0;">{{ wine.description }}</p> 
+                <p>Régió: {{ wine.location.name }}</p>
+            </div>
+            <div class="wine-info-container">
+                <table class="infoTable">
+                    <tbody>
+                        <tr *ngIf="wine.relativeDens !== null">
+                            <th>Relatív sűrűség</th>
+                            <td>{{ wine.relativeDens }}</td>
+                        </tr>
+                        <tr *ngIf="wine.totalAlc !== null">
+                            <th>Összes alkoholtartalom</th>
+                            <td>{{ wine.totalAlc }}%</td>
+                        </tr>
+                        <tr *ngIf="wine.realAlc !== null">
+                            <th>Tényleges alkohol</th>
+                            <td>{{ wine.realAlc }}%</td>
+                        </tr>
+                        <tr *ngIf="wine.totalSugar !== null">
+                            <th>Összes cukor</th>
+                            <td>{{ wine.totalSugar }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.sugarFreeExtract !== null">
+                            <th>Cukormentes extrakt</th>
+                            <td>{{ wine.sugarFreeExtract }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.titratableAcid !== null">
+                            <th>Titrálható sav</th>
+                            <td>{{ wine.titratableAcid }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.totalExtract !== null">
+                            <th>Összes extrakt</th>
+                            <td>{{ wine.totalExtract }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.totalAcid !== null">
+                            <th>Összes sav</th>
+                            <td>{{ wine.totalAcid }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.volatileAcid !== null">
+                            <th>Illósav</th>
+                            <td>{{ wine.volatileAcid }} g/l</td>
+                        </tr>
+                        <tr *ngIf="wine.totalSDiox !== null">
+                            <th>Összes kéndioxid</th>
+                            <td>{{ wine.totalSDiox }} mg/l</td>
+                        </tr>
+                        <tr *ngIf="wine.freeSDiox !== null">
+                            <th>Szabad kéndioxid</th>
+                            <td>{{ wine.freeSDiox }} mg/l</td>
+                        </tr>
+                        <tr *ngIf="wine.ph !== null">
+                            <th>pH</th>
+                            <td>{{ wine.ph }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
+<button (click)="deleteWine()">Törlés</button>
+<button (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
 

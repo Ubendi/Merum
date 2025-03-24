@@ -9,16 +9,40 @@ export interface WineDTO {
   id: number,
   name: string,
   year: number,
-  alcohol: number,
+  description: string,
   location: LocationDTO,
+  relativeDens: number,
+  totalAlc: number,
+  realAlc: number,
+  totalExtract: number,
+  totalAcid: number,
+  volatileAcid: number,
+  totalSDiox: number,
+  freeSDiox: number,
+  ph: number,
+  totalSugar: number,
+  sugarFreeExtract: number,
+  titratableAcid: number,
   picturePath: string
 }
 
 export interface AddWineDTO {
   name: string,
   year: number,
-  alcohol: number,
+  description: string,
   locationEntityId: number,
+  relativeDens: number,
+  totalAlc: number,
+  realAlc: number,
+  totalExtract: number,
+  totalAcid: number,
+  volatileAcid: number,
+  totalSDiox: number,
+  freeSDiox: number,
+  ph: number
+  totalSugar: number,
+  sugarFreeExtract: number,
+  titratableAcid: number,
   picturePath: string
 }
 
@@ -26,10 +50,23 @@ export interface UpdateWineDTO {
   id: number,
   name: string,
   year: number,
-  alcohol: number,
+  description: string,
   locationEntityId: number,
+  relativeDens: number,
+  totalAlc: number,
+  realAlc: number,
+  totalExtract: number,
+  totalAcid: number,
+  volatileAcid: number,
+  totalSDiox: number,
+  freeSDiox: number,
+  ph: number,
+  totalSugar: number,
+  sugarFreeExtract: number,
+  titratableAcid: number,
   picturePath: string
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -67,8 +104,20 @@ export class WinesService {
       id: wineDTO.id,
       name: wineDTO.name,
       year: wineDTO.year,
-      alcohol: wineDTO.alcohol,
+      description: wineDTO.description,
       locationEntityId: wineDTO.location.id,
+      relativeDens: wineDTO.relativeDens,
+      totalAlc: wineDTO.totalAlc,
+      realAlc: wineDTO.realAlc,
+      totalExtract: wineDTO.totalExtract,
+      totalAcid: wineDTO.totalAcid,
+      volatileAcid: wineDTO.volatileAcid,
+      totalSDiox: wineDTO.totalSDiox,
+      freeSDiox: wineDTO.freeSDiox,
+      ph: wineDTO.ph,
+      totalSugar: wineDTO.totalSugar,
+      sugarFreeExtract: wineDTO.sugarFreeExtract,
+      titratableAcid: wineDTO.titratableAcid,
       picturePath: wineDTO.picturePath
     }
   }

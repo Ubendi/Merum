@@ -16,7 +16,9 @@ import { CommonModule } from '@angular/common';
 export class EditWineFormComponent implements OnInit {
   wineId!: number;
   locations: LocationDTO[] = [];
-  updateWineDTO!: UpdateWineDTO;
+  wine!: WineDTO;
+
+  selectedFile: File | null = null;
 
   constructor(
     private winesService: WinesService,
@@ -31,12 +33,30 @@ export class EditWineFormComponent implements OnInit {
     this.wineId = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.locationsService.getAllLocations().subscribe(data => {this.locations = data});
     this.winesService.getWineById(this.wineId).subscribe( data => {
-      this.updateWineDTO = this.winesService.wineDtoToUpdateWineDto(data)
+      this.wine = data
     })
   }
 
   onSubmit() {
-    this.winesService.updateWine(this.updateWineDTO).subscribe(response => {
+    let updateWine = this.winesService.wineDtoToUpdateWineDto(this.wine);
+    if (this.selectedFile){
+      this.uploadService.uploadFile(this.selectedFile, 'Pics', 'Wines').subscribe(response => {
+        const picturePath = response.path;
+        updateWine.picturePath = picturePath;
+        this.updateWine(updateWine);
+      })
+    } else {
+      this.updateWine(updateWine);
+    }
+  }
+
+  onPictureSelected(event: any): void{
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile?.name)
+  }
+
+  updateWine(updateWine: UpdateWineDTO){
+    this.winesService.updateWine(updateWine).subscribe(response => {
       alert(`${response.name} sikeresen szerkesztve`)
       this.router.navigate([`/borok/${response.id}`])
     }, error => {
