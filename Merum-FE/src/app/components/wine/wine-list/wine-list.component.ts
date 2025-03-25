@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { WineCardComponent } from '../../card/wine-card.component';
-import { WinesService } from '../../../../services/wines.service';
-import { WineDTO } from '../../../../services/wines.service';
+import { WineCardComponent } from '../card/wine-card.component';
+import { WinesService } from '../../../services/wines.service';
+import { WineDTO } from '../../../services/wines.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Router } from 'express';
 
 @Component({
   selector: 'app-wine-list',

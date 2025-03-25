@@ -8,14 +8,28 @@ export interface LocationDTO {
   name: string,
   city: string,
   area: number,
-  desc: string
+  soilType: string,
+  altitude: string,
+  cultivationMode: string,
+  grade: string,
+  lineDistance: string,
+  orientation: string,
+  plantationMethod: string,
+  grapeVarietyEntityIds: string
 }
 
 export interface AddLocationDTO {
   name: string,
   city: string,
   area: number,
-  desc: string
+  soilType: string,
+  altitude: string,
+  cultivationMode: string,
+  grade: string,
+  lineDistance: string,
+  orientation: string,
+  plantationMethod: string,
+  grapeVarietyEntityIds: string
 }
 
 @Injectable({
@@ -33,6 +47,10 @@ export class LocationsService {
 
   getAllLocations(): Observable<LocationDTO[]>{
     return this.http.get<LocationDTO[]>(`${this.apiUrl}/locations/getAllLocations`);
+  }
+
+  getLocationById(id: number): Observable<LocationDTO>{
+    return this.http.get<LocationDTO>(`${this.apiUrl}/locations/getLocationById/${id}`);
   }
 
 }
