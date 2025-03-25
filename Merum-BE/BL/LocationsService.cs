@@ -20,6 +20,9 @@ namespace Merum_BE.BL
             return _unitOfWork.LocationRepository.GetAllLocations();
         }
 
-
+        public LocationDTO GetLocationById(int id) 
+        {
+            return _unitOfWork.LocationRepository.GetLocationById(id);
+        }
     }
 }

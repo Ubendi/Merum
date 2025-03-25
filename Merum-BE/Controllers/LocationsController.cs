@@ -25,5 +25,11 @@ namespace Merum_BE.Controllers
             _logger.LogInformation("GetAllLocations called...");
             return _locationService.GetAllLocationsService();
         }
+
+        [HttpGet("getLocationById/{id}")]
+        public LocationDTO GetLocation(int id)
+        {
+            return _locationService.GetLocationById(id);
+        }
     }
 }

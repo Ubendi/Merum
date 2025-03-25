@@ -6,16 +6,10 @@ namespace Merum_BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GrapeVarietiesController : Controller
+    public class GrapeVarietiesController(ILogger<GrapeVarietiesController> logger, GrapeVarietiesService grapeVarietyService) : Controller
     {
-        private readonly ILogger<GrapeVarietiesController> _logger;
-        private readonly GrapeVarietiesService _grapeVarietyService;
-       
-        public GrapeVarietiesController(ILogger<GrapeVarietiesController> logger, GrapeVarietiesService grapeVarietyService)
-        {
-            _logger = logger;
-            _grapeVarietyService = grapeVarietyService;
-        }
+        private readonly ILogger<GrapeVarietiesController> _logger = logger;
+        private readonly GrapeVarietiesService _grapeVarietyService = grapeVarietyService;
 
         //GET
         [HttpGet("getAllGrapeVarieties")]

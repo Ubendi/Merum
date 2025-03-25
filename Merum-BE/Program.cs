@@ -29,6 +29,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<UnitOfWork> ();
 builder.Services.AddScoped<WinesService> ();
 builder.Services.AddScoped<LocationsService>();
+builder.Services.AddScoped<GrapeVarietiesService>();
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
     .AddCertificate();
 

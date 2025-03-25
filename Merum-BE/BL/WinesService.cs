@@ -3,19 +3,10 @@ using Merum_BE.DTO;
 
 namespace Merum_BE.BL
 {
-    public class WinesService
+    public class WinesService(UnitOfWork unitOfWork, ILogger<WinesService> logger)
     {
-        private readonly UnitOfWork _unitOfWork;
-        private readonly ILogger<WinesService> _logger;
-        private GenericService _genericService;
-
-
-        public WinesService (UnitOfWork unitOfWork, ILogger<WinesService> logger)
-        {
-            _unitOfWork = unitOfWork;
-            _logger = logger;
-            _genericService = new GenericService();
-        }
+        private readonly UnitOfWork _unitOfWork = unitOfWork;
+        private readonly ILogger<WinesService> _logger = logger;
 
         public List<WineDTO> GetAllWinesService()
         {
@@ -43,15 +34,13 @@ namespace Merum_BE.BL
             {
                 return false;
             }
-            if (!string.IsNullOrEmpty(wineDTO.PicturePath))
-            {
-                // TODO: handle same pic for multiple
-                var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Pics", "Wines");
-                var fileName = Path.GetFileName(wineDTO.PicturePath);
-                _genericService.DeleteFile(rootPath, fileName);
-            }
             _logger.LogInformation($"Deleting {wineDTO.Name}, {wineDTO.Year}...");
-            return await _unitOfWork.WineRepository.DeleteWineByIdAsync(wineDTO);
+            bool isWineDeleted = await _unitOfWork.WineRepository.DeleteWineByIdAsync(wineDTO);
+            if (wineDTO.PicturePath != null)
+            {
+                this.DeleteWinePicture(wineDTO.PicturePath);
+            }
+            return isWineDeleted;
         }
 
         public async Task<WineDTO> UpdateWineServiceAsync(UpdateWineDTO updateWineDTO)
@@ -61,5 +50,19 @@ namespace Merum_BE.BL
             return await _unitOfWork.WineRepository.UpdateWineAsync(updateWineDTO);
         }
 
+        public bool DeleteWinePicture(string picturePath) 
+        {
+            var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Pics", "Wines");
+            var fileName = Path.GetFileName(picturePath);
+            if (_unitOfWork.WineRepository.IsWinePictureInUse(picturePath))
+            {
+                _logger.LogInformation($"{fileName} is in use by another wine");
+                return false;
+            }
+            var fullPath = Path.Combine(rootPath, fileName);
+            File.Delete(fullPath);
+            _logger.LogInformation($"{fileName} is deleted");
+            return true;
+        }
     }
 }

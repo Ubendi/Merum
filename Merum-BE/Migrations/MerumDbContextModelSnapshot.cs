@@ -102,7 +102,7 @@ namespace Merum_BE.Migrations
                     b.Property<float?>("FreeSDiox")
                         .HasColumnType("real");
 
-                    b.Property<int?>("GrapeVarietyId")
+                    b.Property<int?>("GrapeVarietyEntityId")
                         .HasColumnType("int");
 
                     b.Property<int>("LocationEntityId")
@@ -153,7 +153,7 @@ namespace Merum_BE.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrapeVarietyId");
+                    b.HasIndex("GrapeVarietyEntityId");
 
                     b.HasIndex("LocationEntityId");
 
@@ -164,7 +164,7 @@ namespace Merum_BE.Migrations
                 {
                     b.HasOne("Merum_BE.Data.Models.GrapeVarietyEntity", "GrapeVarietyEntity")
                         .WithMany()
-                        .HasForeignKey("GrapeVarietyId");
+                        .HasForeignKey("GrapeVarietyEntityId");
 
                     b.HasOne("Merum_BE.Data.Models.LocationEntity", "LocationEntity")
                         .WithMany()

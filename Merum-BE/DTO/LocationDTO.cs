@@ -7,8 +7,8 @@ namespace Merum_BE.DTO
         public required string Name { get; set; }
         public string? City { get; set; }
         public int Area { get; set; }
-        public int Altitude { get; set; }
-        public int Year { get; set; }
+        public string? Altitude { get; set; }
+        public string? Year { get; set; }
         public string? Orientation { get; set; }
         public string? Grade { get; set; }
         public ICollection<int>? GrapeVarietyEntityIds { get; set; }

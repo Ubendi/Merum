@@ -2,22 +2,10 @@
 
 namespace Merum_BE.BL
 {
-    public class GenericService
+    public class GenericService (UnitOfWork unitOfWork, ILogger logger)
     {
+        private readonly UnitOfWork _unitOfWork = unitOfWork;
+        private readonly ILogger _logger = logger;
 
-        public GenericService()
-        {
-        }
-
-        public bool DeleteFile(string filePath, string fileName)
-        {
-            var fullPath = Path.Combine(filePath,fileName);
-            if (File.Exists(fullPath))
-            {
-                File.Delete(fullPath);
-                return true;
-            }
-            return false;
-        }
     }
 }

@@ -17,8 +17,8 @@ namespace Merum_BE.Data.Models
         public int LocationEntityId { get; set; }
         [ForeignKey("LocationEntityId")]
         public required LocationEntity LocationEntity { get; set; }
-        public int? GrapeVarietyId { get; set; }
-        [ForeignKey("GrapeVarietyId")]
+        public int? GrapeVarietyEntityId { get; set; }
+        [ForeignKey("GrapeVarietyEntityId")]
         public required GrapeVarietyEntity GrapeVarietyEntity { get; set; }
         public float? RelativeDens { get; set; }
         public float? TotalAlc { get; set; }
@@ -111,6 +111,12 @@ namespace Merum_BE.Data.Models
             _dbContext.Set<WineEntity>().Update(wineEntity);
             await _dbContext.SaveChangesAsync();
             return _mapper.Map<WineEntity, WineDTO>(wineEntity);
+        }
+
+        public bool IsWinePictureInUse(string picturePath)
+        {
+            return _dbContext.Set<WineEntity>()
+                .Any(w => w.PicturePath == picturePath);
         }
 
     }
