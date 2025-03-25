@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment'
 import { LocationDTO } from './locations.service';
+import { GrapeVarietyDTO } from './grape-variety.service';
 
 
 export interface WineDTO {
@@ -11,6 +12,7 @@ export interface WineDTO {
   year: number,
   description: string,
   location: LocationDTO,
+  grapeVariety: GrapeVarietyDTO,
   relativeDens: number,
   totalAlc: number,
   realAlc: number,
@@ -31,6 +33,7 @@ export interface AddWineDTO {
   year: number,
   description: string,
   locationEntityId: number,
+  grapeVarietyEntityId: number,
   relativeDens: number,
   totalAlc: number,
   realAlc: number,
@@ -52,6 +55,7 @@ export interface UpdateWineDTO {
   year: number,
   description: string,
   locationEntityId: number,
+  grapeVarietyEntityId: number,
   relativeDens: number,
   totalAlc: number,
   realAlc: number,
@@ -106,6 +110,7 @@ export class WinesService {
       year: wineDTO.year,
       description: wineDTO.description,
       locationEntityId: wineDTO.location.id,
+      grapeVarietyEntityId: wineDTO.grapeVariety.id,
       relativeDens: wineDTO.relativeDens,
       totalAlc: wineDTO.totalAlc,
       realAlc: wineDTO.realAlc,

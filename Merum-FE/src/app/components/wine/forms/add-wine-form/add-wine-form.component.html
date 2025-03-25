@@ -19,6 +19,11 @@
         <select id="location" [(ngModel)]="addWineDTO.locationEntityId" name="locationEntityId" required>
           <option *ngFor="let location of locations" [value]="location.id">{{ location.name }}</option>
         </select>
+      </div><div class="form-group">
+        <label for="grapeVarietyId">Szőlőfajta:</label>
+        <select id="grapeVariety" [(ngModel)]="addWineDTO.grapeVarietyEntityId" name="grapeVarietyId" required>
+          <option *ngFor="let gv of grapeVarieties" [value]="gv.id">{{ gv.name }}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="picture">Kép</label>

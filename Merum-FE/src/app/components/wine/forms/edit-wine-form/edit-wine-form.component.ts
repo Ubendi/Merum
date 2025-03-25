@@ -5,6 +5,7 @@ import { UploadService } from '../../../../services/generic/upload.service';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-variety.service';
 
 @Component({
   selector: 'app-edit-wine-form',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
 export class EditWineFormComponent implements OnInit {
   wineId!: number;
   locations: LocationDTO[] = [];
+  grapeVarieties: GrapeVarietyDTO [] = [];
   wine!: WineDTO;
 
   selectedFile: File | null = null;
@@ -23,6 +25,7 @@ export class EditWineFormComponent implements OnInit {
   constructor(
     private winesService: WinesService,
     private locationsService: LocationsService,
+    private grapeVarietiesService: GrapeVarietiesService,
     private uploadService: UploadService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -32,12 +35,14 @@ export class EditWineFormComponent implements OnInit {
   ngOnInit(): void {
     this.wineId = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.locationsService.getAllLocations().subscribe(data => {this.locations = data});
+    this.grapeVarietiesService.getAllGrapeVarieties().subscribe(data => {this.grapeVarieties = data});
     this.winesService.getWineById(this.wineId).subscribe( data => {
       this.wine = data
     })
   }
 
   onSubmit() {
+    console.log(this.wine)
     let updateWine = this.winesService.wineDtoToUpdateWineDto(this.wine);
     if (this.selectedFile){
       this.uploadService.uploadFile(this.selectedFile, 'Pics', 'Wines').subscribe(response => {

@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
 import { CommonModule } from '@angular/common';
 import { UploadService } from '../../../../services/generic/upload.service';
+import { GrapeVarietyDTO, GrapeVarietiesService } from '../../../../services/grape-variety.service';
 
 @Component({
   selector: 'app-add-wine-form',
@@ -17,12 +18,14 @@ import { UploadService } from '../../../../services/generic/upload.service';
 export class AddWineFormComponent implements OnInit {
 
   locations: LocationDTO[] = [];
+  grapeVarieties: GrapeVarietyDTO[] = [];
 
   addWineDTO: AddWineDTO = {
     name: 'Test',
     year: 2023,
     description: '',
     locationEntityId: 1,
+    grapeVarietyEntityId: 1,
     relativeDens: 1,
     totalAlc: 1,
     realAlc: 1,
@@ -43,12 +46,14 @@ export class AddWineFormComponent implements OnInit {
   constructor(
     private winesService: WinesService,
     private locationsService: LocationsService,
+    private grapeVarietiesService: GrapeVarietiesService,
     private uploadService: UploadService,
     private router: Router
   ){}
 
   ngOnInit(){
     this.loadLocations();
+    this.loadGrapeVarieties();
   }
 
   onSubmit(){
@@ -83,5 +88,9 @@ export class AddWineFormComponent implements OnInit {
     this.locationsService.getAllLocations().subscribe(data => {
       this.locations = data;
     })
+  }
+
+  loadGrapeVarieties(){
+    this.grapeVarietiesService.getAllGrapeVarieties().subscribe(data => {this.grapeVarieties = data})
   }
 }
