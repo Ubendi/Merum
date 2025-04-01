@@ -1,12 +1,14 @@
-<div class="location-card" *ngIf="location">
-    <!-- <a [routerLink]="['/borok',location.id]" class="location-card-image-container">
-        <img [src]="location.picturePath" alt="{{ location.name }}" class="location-card-image">
-    </a> -->
-    <h2 class="location-header-text" style="margin-bottom:5px">
-        <a [routerLink]="['/borok',location.id]">{{ location.name }}</a>
-    </h2>
-    <h3 class="location-header-text" style="margin-top:5px; margin-block-end:5px">{{ location.name }}</h3>
-    <div class="location-desc-container">
-        {{ location }}
+<div>
+    <div class="location-card" *ngIf="location">
+        <!-- <a [routerLink]="['/borok',location.id]" class="location-card-image-container">
+            <img [src]="location.picturePath" alt="{{ location.name }}" class="location-card-image">
+        </a> -->
+        <h2 class="location-header-text" style="margin-bottom:5px">
+            <a [routerLink]="['/borok',location.id]">{{ location.name }}</a>
+        </h2>
+        <h3 class="location-header-text" style="margin-top:5px; margin-block-end:5px">{{ location.name }}</h3>
+        <div class="location-desc-container">
+            {{ location }}
+        </div>
     </div>
 </div>

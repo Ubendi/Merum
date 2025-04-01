@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
 import { UpdateWineDTO, WineDTO, WinesService } from '../../../../services/wines.service';
 import { UploadService } from '../../../../services/generic/upload.service';
-import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-variety.service';

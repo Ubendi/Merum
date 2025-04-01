@@ -1,27 +1,30 @@
-/* nav-bar.component.scss */
 nav {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  li {
-    margin: 0;
-  }
-  
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  height: 50px;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px; /* Vertically aligns the text */
+  margin: 0;
+  cursor: pointer; /* Adds a clickable cursor */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+li:hover {
+  background-color: #444; /* Change background color on hover */
+  color: #ddd; /* Change text color on hover */
+  font-weight: 550; /* Emphasize hovered item */
+}

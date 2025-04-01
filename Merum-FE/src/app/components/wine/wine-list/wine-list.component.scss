@@ -3,6 +3,21 @@
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+    margin-top: 10px;
+}
+
+.wine-filter{
+    display: flex;
+}
+
+.selector{
+    display: flex;
+    margin: 5px;
+}
+
+mat-select{
+    width: 100px;
+    font-size: 10px
 }
 
 // app-wine-card {
