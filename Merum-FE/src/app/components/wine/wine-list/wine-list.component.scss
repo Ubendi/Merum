@@ -3,6 +3,43 @@
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.wine-filter{
+    display: flex;
+}
+
+.selector{
+    display: flex;
+    margin: 5px;
+}
+
+mat-select{
+    width: 100px;
+    font-size: 10px
+}
+
+.wine-filter{
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.wine-list-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.wine-list-header label{
+    font-size: 17px;
+}
+
+.wine-list-header select{
+    margin-left: 5px;
 }
 
 // app-wine-card {

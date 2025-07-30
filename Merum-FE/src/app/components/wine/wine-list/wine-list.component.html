@@ -1,4 +1,26 @@
-<button [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
+<div class="wine-list-header">
+    <div class="wine-filter" (change)="onFilterChanged()">
+        <div class="selector">
+            <label for="location">Régió:</label>
+            <select id="location" name ="location" [(ngModel)]="selectedLocation">
+                <option *ngFor="let l of locations" [value]="l">{{l || 'Összes'}}</option>
+            </select>
+        </div>
+        <div class="selector">
+            <label for="grapeVariety">Szőlőfajta:</label>
+            <select id="grapeVariety" name="grapeVariety" [(ngModel)]="selectedGrapeVariety">
+                <option *ngFor="let gv of grapeVarieties" [value]="gv">{{gv || 'Összes' }}</option>
+            </select>
+        </div>
+        <div class="selector">
+            <label for="year">Évjárat:</label>
+            <select id="year" name="year" [(ngModel)]="selectedYear">
+                <option *ngFor="let y of yearsWithAllSelector" [value]="y">{{y}}</option>
+            </select>
+        </div>
+    </div>
+    <button [routerLink]="['/borok/hozzaadas']" style="margin-left: auto;">Bor hozzáadása</button>
+</div>
 <div class="wine-list">
-    <app-wine-card *ngFor="let wine of wines" [wine] = "wine"></app-wine-card>
+    <app-wine-card *ngFor="let wine of wines; trackBy: trackWine" [wine] = "wine" [@fadeWineList]></app-wine-card>
 </div>

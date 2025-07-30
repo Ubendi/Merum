@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocationDTO, LocationsService } from '../../services/locations.service';
+import { LocationDTO, LocationsService } from '../../../services/locations.service';
 import { CommonModule } from '@angular/common';
 import { LocationCardComponent } from '../location-card/location-card.component';
 import { RouterModule } from '@angular/router';

@@ -3,9 +3,12 @@ import { AddWineFormComponent } from './components/wine/forms/add-wine-form/add-
 import { WineListComponent } from './components/wine/wine-list/wine-list.component';
 import { WineDetailsComponent } from './components/wine/wine-details.component';
 import { EditWineFormComponent } from './components/wine/forms/edit-wine-form/edit-wine-form.component';
-import { LocationListComponent } from './location/location-list/location-list.component';
+import { LocationListComponent } from './components/location/location-list/location-list.component';
+import { LocationDetailsComponent } from './components/location/location-details.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
+    {path: '', component: HomeComponent},
     {path: 'borok', 
         children: [
             {path: '', component: WineListComponent},
@@ -18,7 +21,8 @@ export const routes: Routes = [
     },
     {path: 'teruletek',
         children: [
-            {path: '',component: LocationListComponent}
+            {path: '',component: LocationListComponent},
+            {path: ':id', component: LocationDetailsComponent}
         ]
     }
 ];

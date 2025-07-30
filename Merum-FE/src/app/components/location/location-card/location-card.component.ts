@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { LocationDTO, LocationsService } from '../../services/locations.service';
+import { LocationDTO, LocationsService } from '../../../services/locations.service';
 
 @Component({
   selector: 'app-location-card',

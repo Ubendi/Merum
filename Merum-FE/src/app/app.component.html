@@ -1,2 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<div [@routeAnimations]="o.isActivated ? o.activatedRoute : ''" class="router-container">
+    <router-outlet #o="outlet"></router-outlet>
+</div>
+<app-footer></app-footer>
+
