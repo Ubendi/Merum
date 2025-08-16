@@ -25,7 +25,10 @@ builder.Services.AddDbContext<MerumDbContext>(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(cfg =>   
+{
+    cfg.AddProfile<MappingProfile>();
+});
 builder.Services.AddScoped<UnitOfWork> ();
 builder.Services.AddScoped<WinesService> ();
 builder.Services.AddScoped<LocationsService>();
