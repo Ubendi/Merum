@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { tap } from 'rxjs';
+
+export interface LoginDTO {
+  identifier: string,
+  password: string
+}
+
+export interface RegisterDTO {
+  email: string,
+  userName: string,
+  password: string,
+  confirmPassword: string 
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private apiUrl = environment.apiUrl
+
+  constructor(private http: HttpClient){}
+
+  login(data: LoginDTO): Observable<any>{
+    return this.http.post(`${this.apiUrl}/auth/login`, data).pipe(
+      tap((res: any) => {
+        localStorage.setItem('token', res.token)
+      })
+    )
+  }
+
+  register(data: RegisterDTO){
+    return this.http.post(`${this.apiUrl}/auth/register`, data)
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+}
