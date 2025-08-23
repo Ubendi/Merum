@@ -1,9 +1,13 @@
 ﻿using Merum_BE.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace Merum_BE.Data.Context
 {
-    public class MerumDbContext : DbContext
+    public class MerumDbContext : IdentityDbContext<MerumUser>
     {
 
         public MerumDbContext(DbContextOptions<MerumDbContext> options) : base(options) { }
@@ -12,5 +16,5 @@ namespace Merum_BE.Data.Context
         public DbSet<WineEntity> WineEntities { get; set; }
         public DbSet<LocationEntity> LocationEntities { get; set; }
         public DbSet<GrapeVarietyEntity> GrapeVarietyEntities { get; set; }
-    }
+        }
 }

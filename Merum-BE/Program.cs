@@ -1,27 +1,43 @@
 using Merum_BE.BL;
 using Merum_BE.Data;
 using Merum_BE.Data.Context;
+using Merum_BE.Data.Models;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var certPath = Path.Combine(AppContext.BaseDirectory, "Certificates");
-//var cert = new X509Certificate2("A:/Programming/Merum/Merum-BE/Certificates/localCert.cer");
-
 // Add services to the container.
 builder.Services.AddDbContext<MerumDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//builder.WebHost.ConfigureKestrel(options =>
-//{
-//    options.ListenAnyIP(5001, listenOptions =>
-//    {
-//        listenOptions.UseHttps(cert);
-//    });
-//});
+builder.Services.AddIdentity<MerumUser, IdentityRole>()
+    .AddEntityFrameworkStores<MerumDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key configuration value is missing.");
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(jwtKey))
+    };
+});
 
 builder.Services.AddControllers();
 
@@ -33,6 +49,7 @@ builder.Services.AddScoped<UnitOfWork> ();
 builder.Services.AddScoped<WinesService> ();
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<GrapeVarietiesService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
     .AddCertificate();
 

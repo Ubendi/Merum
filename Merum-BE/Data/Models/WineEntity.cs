@@ -69,13 +69,13 @@ namespace Merum_BE.Data.Models
                 : _mapper.Map<WineEntity, WineDTO>(wineEntity);
         }
 
-        public async Task<WineDTO> GetWineByIdAsync(int id)
+        public async Task<WineDTO?> GetWineByIdAsync(int id)
         {
             var wineEntity = await _dbContext.Set<WineEntity>().Include(w => w.LocationEntityId)
                 .FirstOrDefaultAsync(w => w.Id == id);
             if (wineEntity == null)
             {
-                return null;
+                return      null;
             }
             return _mapper.Map<WineEntity, WineDTO>(wineEntity); ;
         }
@@ -107,6 +107,11 @@ namespace Merum_BE.Data.Models
                 .Include(w => w.LocationEntity)
                 .FirstOrDefault(w => w.Id == updateWineDTO.Id);
             _mapper.Map(updateWineDTO, wineEntity);
+
+            if (wineEntity == null)
+            {
+                throw new KeyNotFoundException($"Wine with ID {updateWineDTO.Id} not found.");
+            }
 
             _dbContext.Set<WineEntity>().Update(wineEntity);
             await _dbContext.SaveChangesAsync();

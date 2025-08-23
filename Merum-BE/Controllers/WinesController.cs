@@ -11,7 +11,6 @@ namespace Merum_BE.Controllers
     {
         private readonly ILogger<WinesController> _logger;
         private readonly WinesService _winesService;
-        private readonly GenericService _genericService;
 
         public WinesController(ILogger<WinesController> logger, WinesService winesService)
         {
