@@ -22,13 +22,13 @@ namespace Merum_BE.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var success = await _authService.LoginUserAsync(loginDTO);
-            if (!success)
+            var userDTO = await _authService.LoginUserAsync(loginDTO);
+            if (userDTO == null)
             {
                 Response.StatusCode = 401; // Unauthorized
                 return Unauthorized("Hibás bejelentkezés");
             }
-            return Ok("Sikeres bejelentkezés");
+            return Ok(userDTO);
         }
 
         [HttpPost("register")]

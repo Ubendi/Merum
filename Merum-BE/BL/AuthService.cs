@@ -17,22 +17,27 @@ namespace Merum_BE.BL
             _signInManager = signInManager;
         }
 
-        public async Task<MerumUser?> RegisterUserAsync(RegisterDTO registerDTO)
+        public async Task<UserDTO?> RegisterUserAsync(RegisterDTO registerDTO)
         {
             var user = new MerumUser
             {
                 UserName = registerDTO.Username,
                 Email = registerDTO.Email
             };
+            var userDTO = new UserDTO
+            {
+                UserName = user.UserName,
+                Email = user.Email
+            };
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
-            return result.Succeeded ? user : null;
+            return result.Succeeded ? userDTO : null;
         }
 
-        public async Task<bool> LoginUserAsync(LoginDTO loginDTO)
+        public async Task<UserDTO?> LoginUserAsync(LoginDTO loginDTO)
         {
             if (string.IsNullOrWhiteSpace(loginDTO.Identifier) || string.IsNullOrWhiteSpace(loginDTO.Password))
             {
-                return false;
+                return null;
             }
             MerumUser? user;
             if (loginDTO.Identifier.Contains("@"))
@@ -43,10 +48,15 @@ namespace Merum_BE.BL
             {
                 user = await _userManager.FindByNameAsync(loginDTO.Identifier);
             }
-            if (user == null || String.IsNullOrEmpty(user.UserName)) return false;
+            if (user == null || String.IsNullOrEmpty(user.UserName)) return null;
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
-            return result.Succeeded;
+            var userDTO = new UserDTO
+            {
+                UserName = user.UserName,
+                Email = user.Email
+            };
+            return result.Succeeded? userDTO : null;
 
         }
     }

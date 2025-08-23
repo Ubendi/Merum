@@ -22,4 +22,10 @@ namespace Merum_BE.DTO
         [Required, Compare("Password", ErrorMessage = "Passwords do not match.")]
         public required string ConfirmPassword { get; set; }
     }
+
+    public class UserDTO
+    {
+        public string? Email { get; set; }
+        public string? UserName { get; set; }
+    }
 }
