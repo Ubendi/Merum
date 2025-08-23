@@ -1,0 +1,25 @@
+<div>
+  <h2 mat-dialog-title class="dialog-title">Bejelentkezés a Merum Pincészet honlapjára</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Felhasználó / Email cím</mat-label >
+        <input matInput formControlName="identifier" type="user" required/>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Jelszó (minimum 8 karakter)</mat-label>
+        <input matInput formControlName="password" type="password" required>
+      </mat-form-field>
+      <div class="actions">
+        <button mat-button mat-dialog-close>Vissza</button>
+        <button mat-flat-button color="primary" type="submit">Bejelentkezés</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>
+
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="identifier" placeholder="Felhasználó / E-mail cím" />
+  <input formControlName="password" type="password" placeholder="Jelszó" />
+  <button type="submit">Login</button>
+</form> -->
