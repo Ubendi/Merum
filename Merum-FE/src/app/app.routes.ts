@@ -7,6 +7,10 @@ import { LocationListComponent } from './components/location/location-list/locat
 import { LocationDetailsComponent } from './components/location/location-details.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './components/helper/auth/authguard/authguard';
+import { EbikeHomeComponent } from './components/ebike/ebike-home/ebike-home.component';
+import { GuesthouseHomeComponent } from './components/guesthouse/guesthouse-home/guesthouse-home.component';
+import { SupportHomeComponent } from './components/support/support-home/support-home.component';
+import { ContactHomeComponent } from './components/contact/contact-home/contact-home.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -25,5 +29,9 @@ export const routes: Routes = [
             {path: '',component: LocationListComponent},
             {path: ':id', component: LocationDetailsComponent}
         ]
-    }
+    },
+    {path: 'ebike', component: EbikeHomeComponent },
+    {path: 'vendeghaz', component: GuesthouseHomeComponent},
+    {path: 'tamogatas', component: SupportHomeComponent},
+    {path: 'kapcsolat', component: ContactHomeComponent}
 ];

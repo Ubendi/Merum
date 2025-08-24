@@ -5,6 +5,7 @@
     justify-content: center;
     margin-left: 10px;
     margin-right: 10px;
+    min-height: calc(100vh - 60px);
 }
 
 .wine-filter{
@@ -41,9 +42,3 @@ mat-select{
 .wine-list-header select{
     margin-left: 5px;
 }
-
-// app-wine-card {
-//     width: 200px;
-//     height: 300px;
-//     box-sizing: border-box;
-// }
