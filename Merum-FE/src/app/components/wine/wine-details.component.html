@@ -67,6 +67,8 @@
     </div>
 
 </div>
-<button (click)="deleteWine()">Törlés</button>
-<button (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+@if(this.authService.isLoggedIn()){
+    <button (click)="deleteWine()">Törlés</button>
+    <button (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+}
 

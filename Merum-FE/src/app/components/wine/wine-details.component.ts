@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WineDTO, WinesService } from '../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-wine-details',
@@ -18,7 +19,8 @@ export class WineDetailsComponent implements OnInit {
   constructor(
     private winesService: WinesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ){}
 
   ngOnInit(): void {

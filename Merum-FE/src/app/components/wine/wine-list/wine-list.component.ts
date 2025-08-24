@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MatSelectModule, MatOption } from '@angular/material/select'
 import { FormsModule, NgModel } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-wine-list',
@@ -38,7 +39,8 @@ export class WineListComponent implements OnInit {
   selectedLocation?: string;
 
   constructor(
-    private winesService: WinesService
+    private winesService: WinesService,
+    public authService: AuthService
   ){}
 
   ngOnInit(): void {

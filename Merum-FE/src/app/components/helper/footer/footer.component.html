@@ -1,5 +1,9 @@
 <div class="footer-base">
     <h3>Merum Pincészet Tállya</h3>
     <p>3907 Tállya, Rózsa utca 26</p>
-    <a href="#" (click)="openLoginDialog($event)">Bejelentkezés</a>
+    @if(!this.authService.isLoggedIn()){
+        <a href="#" (click)="openLoginDialog($event)">Bejelentkezés</a>
+    } @else {
+        <a href="#" (click)="logOut($event)">Kijelentkezés</a>
+    }
 </div>

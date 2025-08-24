@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-variety.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-edit-wine-form',

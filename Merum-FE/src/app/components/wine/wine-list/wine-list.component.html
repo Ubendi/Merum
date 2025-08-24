@@ -19,8 +19,12 @@
             </select>
         </div>
     </div>
-    <button [routerLink]="['/borok/hozzaadas']" style="margin-left: auto;">Bor hozzáadása</button>
+    @if (this.authService.isLoggedIn()){
+        <button [routerLink]="['/borok/hozzaadas']" style="margin-left: auto;">Bor hozzáadása</button>
+    }
 </div>
 <div class="wine-list">
-    <app-wine-card *ngFor="let wine of wines; trackBy: trackWine" [wine] = "wine" [@fadeWineList]></app-wine-card>
+    @for(wine of wines; track wine.id){
+        <app-wine-card [wine] = "wine" [@fadeWineList]></app-wine-card>
+    }
 </div>
