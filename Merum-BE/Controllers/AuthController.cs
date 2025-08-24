@@ -25,10 +25,16 @@ namespace Merum_BE.Controllers
             var userDTO = await _authService.LoginUserAsync(loginDTO);
             if (userDTO == null)
             {
-                Response.StatusCode = 401; // Unauthorized
+                Response.StatusCode = 401;
                 return Unauthorized("Hibás bejelentkezés");
             }
-            return Ok(userDTO);
+            var token = _authService.GenerateJwtToken(userDTO);
+            return Ok(new
+            {
+                token,
+                expiresIn = Convert.ToInt32(_authService.GetExpireMinutes() * 60),
+                user = userDTO
+            });
         }
 
         [HttpPost("register")]
@@ -37,7 +43,7 @@ namespace Merum_BE.Controllers
             var user = await _authService.RegisterUserAsync(registerDTO);
             if (user == null)
             {
-                Response.StatusCode = 400; // Bad Request
+                Response.StatusCode = 400;
                 return BadRequest("Sikertelen regisztráció");
             }
             return Ok("Sikeres regisztráció");
