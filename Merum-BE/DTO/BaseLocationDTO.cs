@@ -17,7 +17,7 @@ namespace Merum_BE.DTO
         public string? PlantationMethod { get; set; }
         public string? SoilType { get; set; }
     }
-    public class LocationDTO : BaseLocationDTO
+    public class UpdateLocationDTO : BaseLocationDTO
     {
         public int Id { get; set; }
     }

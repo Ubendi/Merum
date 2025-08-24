@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using Merum_BE.Data.Models;
-using Merum_BE.Migrations;
-using System.ComponentModel.DataAnnotations;
-
-namespace Merum_BE.DTO
+﻿namespace Merum_BE.DTO
 {
     public class BaseWineDTO
     {
@@ -11,7 +6,7 @@ namespace Merum_BE.DTO
         public int Year { get; set; }
         public string? Description { get; set; }
         public float? RelativeDens { get; set; }
-        public float? TotalAlc { get; set; }
+        public float? TotalAlc { get; set; }x
         public float? RealAlc { get; set; }
         public float? TotalExtract { get; set; }
         public float? TotalAcid { get; set; }
@@ -28,7 +23,7 @@ namespace Merum_BE.DTO
     public class WineDTO : BaseWineDTO
     {
         public int Id { get; set; }
-        public LocationDTO? Location { get; set; }
+        public BaseLocationDTO? Location { get; set; }
         public GrapeVarietyDTO? GrapeVariety { get; set; }
     }
     public class AddWineDTO : BaseWineDTO 

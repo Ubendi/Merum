@@ -11,10 +11,13 @@ namespace Merum_BE.DTO
             CreateMap<WineEntity, WineDTO>().
                 ForMember(dest => dest.Location,
                 opt => opt.MapFrom(src => src.LocationEntity));
+            CreateMap<WineEntity, AddWineDTO>();
 
-            CreateMap<AddWineDTO, WineEntity>();
+            CreateMap<LocationEntity, BaseLocationDTO>();
+            CreateMap<LocationEntity, AddLocationDTO>();
 
-            CreateMap<LocationEntity, LocationDTO>();
+            CreateMap<EbikeTourEntity, AddEbikeTourDTO>();
+            CreateMap<EbikeTourEntity, UpdateEbikeTourDTO>();
         }
     }
 }

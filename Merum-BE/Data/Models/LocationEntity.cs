@@ -27,28 +27,28 @@ namespace Merum_BE.Data.Models
 
     public interface ILocationRepository
     {
-        List<LocationDTO> GetAllLocations();
+        List<BaseLocationDTO> GetAllLocations();
 
-        LocationDTO GetLocationById(int id);
+        BaseLocationDTO GetLocationById(int id);
     }
 
     public class LocationRepository(MerumDbContext dbContext, IMapper mapper) : ILocationRepository
     {
         private readonly MerumDbContext _dbContext = dbContext;
         private readonly IMapper _mapper = mapper;
-        public List<LocationDTO> GetAllLocations()
+        public List<BaseLocationDTO> GetAllLocations()
         {
             var locationEntities = _dbContext.Set<LocationEntity>().ToList();
-            return _mapper.Map<List<LocationEntity>, List<LocationDTO>>(locationEntities);
+            return _mapper.Map<List<LocationEntity>, List<BaseLocationDTO>>(locationEntities);
         }
 
-        public LocationDTO GetLocationById(int id)
+        public BaseLocationDTO GetLocationById(int id)
         {
             var location = _dbContext.Set<LocationEntity>()
                 .FirstOrDefault(l => l.Id == id);
             return location == null 
                 ? throw new KeyNotFoundException($"Location with ID {id} not found.")
-                : _mapper.Map<LocationEntity,LocationDTO>(location);
+                : _mapper.Map<LocationEntity,BaseLocationDTO>(location);
         }
     }
 }

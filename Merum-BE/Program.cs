@@ -49,6 +49,7 @@ builder.Services.AddScoped<UnitOfWork> ();
 builder.Services.AddScoped<WinesService> ();
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<GrapeVarietiesService>();
+builder.Services.AddScoped<EbikeToursService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
     .AddCertificate();

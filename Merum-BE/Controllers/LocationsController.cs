@@ -20,14 +20,14 @@ namespace Merum_BE.Controllers
 
         //GET
         [HttpGet("getAllLocations")]
-        public List<LocationDTO> GetAllLocations() 
+        public List<BaseLocationDTO> GetAllLocations() 
         {
             _logger.LogInformation("GetAllLocations called...");
             return _locationService.GetAllLocationsService();
         }
 
         [HttpGet("getLocationById/{id}")]
-        public LocationDTO GetLocation(int id)
+        public BaseLocationDTO GetLocation(int id)
         {
             return _locationService.GetLocationById(id);
         }

@@ -16,5 +16,6 @@ namespace Merum_BE.Data.Context
         public DbSet<WineEntity> WineEntities { get; set; }
         public DbSet<LocationEntity> LocationEntities { get; set; }
         public DbSet<GrapeVarietyEntity> GrapeVarietyEntities { get; set; }
-        }
+        public DbSet<EbikeTourEntity> EbikeTourEntities { get; set; }
+    }
 }

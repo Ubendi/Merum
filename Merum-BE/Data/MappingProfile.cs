@@ -14,7 +14,7 @@ namespace Merum_BE.Data
             CreateMap<AddWineDTO, WineEntity>();
             CreateMap<UpdateWineDTO, WineEntity>();
 
-            CreateMap<LocationEntity, LocationDTO>();
+            CreateMap<LocationEntity, BaseLocationDTO>();
             CreateMap<LocationEntity, AddLocationDTO>();
 
             CreateMap<GrapeVarietyEntity, GrapeVarietyDTO>();

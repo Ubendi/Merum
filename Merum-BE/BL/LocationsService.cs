@@ -14,13 +14,13 @@ namespace Merum_BE.BL
             _logger = logger;
         }
 
-        public List<LocationDTO> GetAllLocationsService()
+        public List<BaseLocationDTO> GetAllLocationsService()
         {
             _logger.LogInformation("Getting all locations...");
             return _unitOfWork.LocationRepository.GetAllLocations();
         }
 
-        public LocationDTO GetLocationById(int id) 
+        public BaseLocationDTO GetLocationById(int id) 
         {
             return _unitOfWork.LocationRepository.GetLocationById(id);
         }
