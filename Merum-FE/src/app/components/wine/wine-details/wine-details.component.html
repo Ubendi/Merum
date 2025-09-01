@@ -1,0 +1,104 @@
+@if (wine) {
+  <div class="wine-card">
+    <div class="wine-image-container">
+      <img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image" />
+    </div>
+
+    <div class="wine-content">
+      <h2 class="wine-title">{{ wine.name }} ({{ wine.year }})</h2>
+
+      <div class="wine-details-container">
+        <div class="wine-desc-container">
+          <p class="wine-description">{{ wine.description }}</p>
+          <p class="wine-region">Régió: <strong>{{ wine.location.name }}</strong></p>
+        </div>
+
+        <div class="wine-info-container">
+          <table class="info-table">
+            <tbody>
+              @if (wine.relativeDens !== null) {
+                <tr>
+                  <th>Relatív sűrűség</th>
+                  <td>{{ wine.relativeDens }}</td>
+                </tr>
+              }
+              @if (wine.totalAlc !== null) {
+                <tr>
+                  <th>Összes alkoholtartalom</th>
+                  <td>{{ wine.totalAlc }}%</td>
+                </tr>
+              }
+              @if (wine.realAlc !== null) {
+                <tr>
+                  <th>Tényleges alkohol</th>
+                  <td>{{ wine.realAlc }}%</td>
+                </tr>
+              }
+              @if (wine.totalSugar !== null) {
+                <tr>
+                  <th>Összes cukor</th>
+                  <td>{{ wine.totalSugar }} g/l</td>
+                </tr>
+              }
+              @if (wine.sugarFreeExtract !== null) {
+                <tr>
+                  <th>Cukormentes extrakt</th>
+                  <td>{{ wine.sugarFreeExtract }} g/l</td>
+                </tr>
+              }
+              @if (wine.titratableAcid !== null) {
+                <tr>
+                  <th>Titrálható sav</th>
+                  <td>{{ wine.titratableAcid }} g/l</td>
+                </tr>
+              }
+              @if (wine.totalExtract !== null) {
+                <tr>
+                  <th>Összes extrakt</th>
+                  <td>{{ wine.totalExtract }} g/l</td>
+                </tr>
+              }
+              @if (wine.totalAcid !== null) {
+                <tr>
+                  <th>Összes sav</th>
+                  <td>{{ wine.totalAcid }} g/l</td>
+                </tr>
+              }
+              @if (wine.volatileAcid !== null) {
+                <tr>
+                  <th>Illósav</th>
+                  <td>{{ wine.volatileAcid }} g/l</td>
+                </tr>
+              }
+              @if (wine.totalSDiox !== null) {
+                <tr>
+                  <th>Összes kéndioxid</th>
+                  <td>{{ wine.totalSDiox }} mg/l</td>
+                </tr>
+              }
+              @if (wine.freeSDiox !== null) {
+                <tr>
+                  <th>Szabad kéndioxid</th>
+                  <td>{{ wine.freeSDiox }} mg/l</td>
+                </tr>
+              }
+              @if (wine.ph !== null) {
+                <tr>
+                  <th>pH</th>
+                  <td>{{ wine.ph }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="wine-actions">
+        <button class="action-btn back" (click)="navigateToWines()">Vissza a borokhoz</button>
+        @if (authService.isLoggedIn()) {
+          <button class="action-btn delete" (click)="deleteWine()">Törlés</button>
+          <button class="action-btn edit" (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+        }
+      </div>
+    </div>
+  </div>
+}

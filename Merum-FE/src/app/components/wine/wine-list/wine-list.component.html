@@ -1,7 +1,7 @@
 <div class="wine-list-header">
-    <div class="wine-filter" (change)="onFilterChanged()">
+    <div class="wine-filter-container" (change)="onFilterChanged()">
         <div class="selector">
-            <label for="location">Régió:</label>
+            <mat-label for="location">Régió:</mat-label>
             <select id="location" name ="location" [(ngModel)]="selectedLocation">
                 <option *ngFor="let l of locations" [value]="l">{{l || 'Összes'}}</option>
             </select>
@@ -19,12 +19,14 @@
             </select>
         </div>
     </div>
-    @if (this.authService.isLoggedIn()){
-        <button [routerLink]="['/borok/hozzaadas']" style="margin-left: auto;">Bor hozzáadása</button>
-    }
 </div>
 <div class="wine-list">
     @for(wine of wines; track wine.id){
         <app-wine-card [wine] = "wine" [@fadeWineList]></app-wine-card>
     }
 </div>
+@if (this.authService.isLoggedIn()){
+    <div clas="wine-list-controls">
+       <button [routerLink]="['/borok/hozzaadas']" style="margin-left: auto;">Bor hozzáadása</button>
+    </div>
+}

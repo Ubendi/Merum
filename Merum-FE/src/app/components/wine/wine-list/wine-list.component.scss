@@ -8,13 +8,17 @@
     min-height: calc(100vh - 60px);
 }
 
-.wine-filter{
+.wine-filter-container{
     display: flex;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
 .selector{
     display: flex;
-    margin: 5px;
+    margin: 10px;
 }
 
 mat-select{
@@ -30,7 +34,7 @@ mat-select{
 
 .wine-list-header{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px;
 }

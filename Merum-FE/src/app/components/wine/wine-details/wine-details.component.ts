@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WineDTO, WinesService } from '../../services/wines.service';
+import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-wine-details',
@@ -55,5 +55,9 @@ export class WineDetailsComponent implements OnInit {
 
   navigateToEditWine(wineId: number): void {
     this.router.navigate(['/borok/szerkesztes', wineId])
+  }
+
+  navigateToWines(): void {
+    this.router.navigate(['/borok']);
   }
 }

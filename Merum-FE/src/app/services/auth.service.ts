@@ -27,7 +27,9 @@ export class AuthService {
   login(data: LoginDTO): Observable<any>{
     return this.http.post(`${this.apiUrl}/auth/login`, data).pipe(
       tap((res: any) => {
-        localStorage.setItem('token', res.token)
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('token', res.token)
+        }
       })
     )
   }
@@ -37,7 +39,12 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return localStorage.getItem('token');
+    }
+    else {
+      return '';
+    }
   }
 
   isLoggedIn(): boolean{

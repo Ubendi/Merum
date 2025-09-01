@@ -1,0 +1,127 @@
+.wine-card {
+  display: flex;
+  gap: 40px;
+  padding: 30px;
+  background-color: transparent;
+  border-radius: 12px;
+}
+
+.wine-image-container {
+  flex-shrink: 0;
+  background: white;
+  width: 25%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.wine-card-image {
+  height: 500px;
+  object-fit: cover;
+}
+
+.wine-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.wine-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #5a2d0c;
+}
+
+.wine-details-container {
+  display: flex;
+  gap: 40px;
+}
+
+.wine-desc-container {      
+  max-width: 500px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.wine-description {
+  margin-top: 0;
+}
+
+.wine-region {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #3e2f1c;
+}
+
+.info-table th,
+.info-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.info-table th {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #5a2d0c;
+}
+
+.info-table td {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.wine-info-container {
+  max-width: 300px;
+}
+
+.wine-actions {
+  margin-top: 30px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn.back {
+  background-color: darkgray;
+  color: white
+}
+
+.action-btn.back:hover{
+  background-color: gray;
+}
+
+.action-btn.delete {
+  background-color: #c0392b;
+  color: white;
+}
+
+.action-btn.delete:hover {
+  background-color: #a93226;
+}
+
+.action-btn.edit {
+  background-color: #2980b9;
+  color: white;
+}
+
+.action-btn.edit:hover {
+  background-color: #2471a3;
+}

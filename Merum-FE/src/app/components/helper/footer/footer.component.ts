@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../auth/login/login.component';
 import { AuthService } from '../../../services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, RouterModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   constructor(
     private dialog: MatDialog,
+    private router: Router,
     public authService: AuthService
   ) {};
 
@@ -28,5 +30,6 @@ export class FooterComponent {
     localStorage.removeItem('token');
     console.log("Logout successful");
     alert("Sikeres kijelentkezés");
+    this.router.navigate(['/']);
   }
 }
