@@ -4,6 +4,7 @@ namespace Merum_BE.DTO
 {
     public class BaseLocationDTO
     {
+        public int Id { get; set; }
         public required string Name { get; set; }
         public string? City { get; set; }
         public int Area { get; set; }
@@ -19,7 +20,6 @@ namespace Merum_BE.DTO
     }
     public class UpdateLocationDTO : BaseLocationDTO
     {
-        public int Id { get; set; }
     }
 
     public class AddLocationDTO : BaseLocationDTO { }

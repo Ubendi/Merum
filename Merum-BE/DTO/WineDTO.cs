@@ -6,7 +6,7 @@
         public int Year { get; set; }
         public string? Description { get; set; }
         public float? RelativeDens { get; set; }
-        public float? TotalAlc { get; set; }x
+        public float? TotalAlc { get; set; }
         public float? RealAlc { get; set; }
         public float? TotalExtract { get; set; }
         public float? TotalAcid { get; set; }

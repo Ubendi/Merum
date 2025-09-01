@@ -25,8 +25,8 @@ namespace Merum_BE.Data.Models
 
     public interface IEbikeTourRepository
     {
-        List<EbikeTourDTO> GetAllEbikeTours();
-        EbikeTourDTO GetEbikeTourById(int id);
+        List<BaseEbikeTourDTO> GetAllEbikeTours();
+        BaseEbikeTourDTO GetEbikeTourById(int id);
         //Task<EbikeTourDTO> AddEbikeTourAsync(EbikeTourDTO.AddEbikeTourDTO addEbikeTourDTO);
         //Task<bool> DeleteEbikeTourByIdAsync(int id);
         //Task<EbikeTourDTO> UpdateEbikeTourAsync(EbikeTourDTO.UpdateEbikeTourDTO updateEbikeTourDTO);
@@ -41,19 +41,19 @@ namespace Merum_BE.Data.Models
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public List<EbikeTourDTO> GetAllEbikeTours()
+        public List<BaseEbikeTourDTO> GetAllEbikeTours()
         {
             var ebikeTourEntities = _dbContext.Set<EbikeTourEntity>().ToList();
-            return _mapper.Map<List<EbikeTourEntity>, List<EbikeTourDTO>>(ebikeTourEntities);
+            return _mapper.Map<List<EbikeTourEntity>, List<BaseEbikeTourDTO>>(ebikeTourEntities);
         }
-        public EbikeTourDTO GetEbikeTourById(int id)
+        public BaseEbikeTourDTO GetEbikeTourById(int id)
         {
             var ebikeTourEntity = _dbContext.Set<EbikeTourEntity>().Find(id);
             if (ebikeTourEntity == null)
             {
                 throw new KeyNotFoundException($"Ebike tour with ID {id} not found.");
             }
-            return _mapper.Map<EbikeTourEntity, EbikeTourDTO>(ebikeTourEntity);
+            return _mapper.Map<EbikeTourEntity, BaseEbikeTourDTO>(ebikeTourEntity);
         }
         // Implement Add, Delete, Update methods as needed
     }
