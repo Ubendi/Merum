@@ -8,6 +8,13 @@
     min-height: calc(100vh - 60px);
 }
 
+.wine-list-controls-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+}
+
 .wine-filter-container{
     display: flex;
     justify-content: center;
