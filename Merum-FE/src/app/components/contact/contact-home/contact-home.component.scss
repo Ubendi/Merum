@@ -1,25 +1,29 @@
+.contact-page-container {
+    flex: 1;
+    height: 100%;
+}
+
 .line-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
     margin-top: 50px;
+    height: 50vh;
 }
 
-.page-container {
-    align-items: center;
-    text-align: center;
-}
-
-.contact-container {
+.contact-card-container {
+    display: flex;
+    flex-direction: column;
     background-color: #343a40;
-    height: 400px;
+    height: 100%;
     width: 45%;
     border-radius: 7px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .maps-container {
-    height: 400px;
     width: 45%;
     border-radius: 7px;
 }
@@ -49,6 +53,7 @@
   text-decoration: none;
   border-radius: 6px;
   transition: background-color 0.3s ease;
+  width: 50%;
 }
 
 .fb-button:hover {
@@ -60,4 +65,19 @@
   height: 20px;
   margin-right: 10px;
   vertical-align: middle;
+}
+
+@media (min-width: 2000px) {
+  .contact-text-l {
+    font-size: 50px;
+  }
+
+  .contact-text-m {
+    font-size: 28px;
+  }
+
+  .fb-button {
+    font-size: 24px;
+    padding: 14px 24px;
+  }
 }
