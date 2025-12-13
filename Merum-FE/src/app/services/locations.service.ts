@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface LocationDTO {
   id: number,
+  title: string,
   name: string,
   city: string,
   area: number,
@@ -15,11 +16,15 @@ export interface LocationDTO {
   lineDistance: string,
   orientation: string,
   plantationMethod: string,
-  grapeVarietyEntityIds: string
+  year: number,
+  grapeVarietyEntityIds: string,
+  latitude: string,
+  longitude: string
 }
 
 export interface AddLocationDTO {
   name: string,
+  title: string,
   city: string,
   area: number,
   soilType: string,
@@ -29,7 +34,10 @@ export interface AddLocationDTO {
   lineDistance: string,
   orientation: string,
   plantationMethod: string,
-  grapeVarietyEntityIds: string
+  year: number,
+  grapeVarietyEntityIds: string,
+  latitude: string,
+  longitude: string
 }
 
 @Injectable({

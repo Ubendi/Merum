@@ -3,45 +3,57 @@
     border-radius: 5px;
     padding: 10px;
     // margin: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
     width: 350px;
     height: 800px;
+    border: solid black 1px;
     font-family: 'Vollkorn', sans-serif;
+    background-color: rgb(108, 117, 125);
+    position: relative;
   }
 
-  .wine-card-image-container {
-    display: flex;
-    justify-content: center;
-    width: auto;
-    height: 600px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    overflow: hidden;
+  .location-header-text{
+    text-align: center;
+    padding-bottom: 15px;
   }
 
-  .wine-card-image {
-    height: 580px;
-    transition: 0.3s;
-    transform-origin: center;
-  }
-
-  .wine-card-image:hover{
-    transform: scale(1.1);
-  }
-
-  h2 a {
+  .location-header-text a{
     color: #e1752f;
     text-decoration: none;
+    font-size: 30px;
     font-weight: normal;
   }
 
-  .wine-desc-container {
-    display: block;
-    display: -webkit-box;
-    height: 90px;
-    margin-block-start: 0px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+  tr:nth-child(even){
+    background-color: rgb(60, 66, 72);
+  }
+
+  tr:nth-child(odd){
+    background-color: rgb(45, 51, 57);
+  }
+
+  th, td {
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+  }
+
+  th {
+    text-align: right;
+    width: 40%;
+  }
+
+  td {
+    text-align: left;
+    width: 60%;
+  }
+
+  .maps-container{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    margin-bottom: 20px;
+    height: 30%;
   }

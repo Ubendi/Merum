@@ -1,13 +1,13 @@
 {
   "name": "merum-fe",
   "version": "0.0.0",
-  "scripts": {
+"scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:merum-fe": "node dist/merum-fe/server/server.mjs"
+    "build": "ng build merum-fe --configuration production --output-path=dist/merum-fe",
+    "build:prod": "ng build merum-fe --configuration production --output-path=dist/merum-fe",
+    "watch": "ng build merum-fe --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

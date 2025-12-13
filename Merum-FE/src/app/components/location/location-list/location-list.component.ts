@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-location-list',
-  imports: [CommonModule,LocationCardComponent,RouterModule],
+  imports: [CommonModule, LocationCardComponent, RouterModule],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss'
 })
