@@ -5,6 +5,7 @@ namespace Merum_BE.DTO
     public class BaseLocationDTO
     {
         public int Id { get; set; }
+        public required string Title { get; set; }
         public required string Name { get; set; }
         public string? City { get; set; }
         public int Area { get; set; }
@@ -17,6 +18,8 @@ namespace Merum_BE.DTO
         public string? LineDistance { get; set; }
         public string? PlantationMethod { get; set; }
         public string? SoilType { get; set; }
+        public string? Latitude { get; set; }
+        public string? Longitude { get; set; }  
     }
     public class UpdateLocationDTO : BaseLocationDTO
     {

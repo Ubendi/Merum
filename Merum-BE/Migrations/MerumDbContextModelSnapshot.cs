@@ -107,7 +107,13 @@ namespace Merum_BE.Migrations
                     b.PrimitiveCollection<string>("GrapeVarietyEntityIds")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Latitude")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LineDistance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Longitude")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -121,6 +127,10 @@ namespace Merum_BE.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SoilType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Year")

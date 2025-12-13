@@ -69,6 +69,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<MerumDbContext>();
+    var pendingMigration = db.Database.GetPendingMigrations();
+    Console.Write(pendingMigration.ToString());
+
+    if (pendingMigration.Any())
+    {
+        db.Database.Migrate();
+    }
+}
+
+var picsPath = Path.Combine(Directory.GetCurrentDirectory(), "Pics");
+if(!Directory.Exists(picsPath)) Directory.CreateDirectory(picsPath);
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
