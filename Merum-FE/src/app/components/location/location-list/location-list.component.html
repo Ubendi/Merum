@@ -1,4 +1,6 @@
-<button [routerLink]="['/teruletek/hozzaadas']">Bor hozzáadása</button>
+<!-- <button [routerLink]="['/teruletek/hozzaadas']">Hozzáadás</button> -->
 <div class="location-list">
-    <app-location-card *ngFor="let location of locations" [location] = "location"></app-location-card>
+    @for(location of locations; track location.id){
+        <app-location-card [location]="location"></app-location-card>
+    }
 </div>
