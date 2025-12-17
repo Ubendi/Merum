@@ -1,0 +1,25 @@
+.guesthouse-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.guesthouse-carousel-container {
+    width: 48%;
+    border: 1px solid blue;
+}
+
+.guesthouse-description-container {
+    width: 48%;
+    border: 1px solid red;
+}
+
+.line-picture-container {
+    width: 80%;
+    margin: auto;
+}
+
+.guesthouse-header {
+    color: var(--merum-orange);
+    font-size: 40px;
+    text-align: center;
+}
