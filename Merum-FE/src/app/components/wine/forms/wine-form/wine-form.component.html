@@ -1,0 +1,97 @@
+<div class="wine-form-container">
+    <form [formGroup]="form" (ngSubmit)="ngOnSubmit(); $event.preventDefault()" class="wine-form">
+        <div class="form-left">
+            <h1>{{ title }}</h1>
+            <div class="form-field-main">
+                <label for="name">Név</label>
+                <input id="name" type="text" formControlName="name">
+                <!-- @if(form.controls.name.invalid && form.controls.name.touched){
+                    <div class="error">
+                        Name is required
+                    </div>
+                } -->
+            </div>
+            <div class="form-field-main">
+                <label for="year">Évjárat</label>
+                <input id="year" type="number" formControlName="year">
+            </div>
+            <div class="form-field-main">
+                <label for="description">Leirás</label>
+                <textarea rows="8" id="description" formControlName="description"></textarea>
+            </div>
+            <div class="form-field-main">
+                <label for="location">Régió</label>
+                <select id="locationEntityId" formControlName="locationEntityId">
+                    @for(location of locations; track location.name){
+                        <option [value]="location.id">{{ location.name }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-field-main">
+                <label for="grapeVariety">Szőlőfajta</label>
+                <select id="grapeVarietyEntityId" formControlName="grapeVarietyEntityId">
+                    @for(gv of grapeVarieties; track gv.name){
+                        <option [value]="gv.id">{{ gv.name }}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-field-main">
+                <label for="picture">Kép</label>
+                <input type="file" (change)="onPictureSelected($event)">
+            </div>
+        </div>
+        <div class="form-right">
+            <div class="form-field-table">
+                <label for="relativeDens">Relatív sűrűség</label>
+                <input type="number" id="relativeDens" formControlName="relativeDens">
+            </div>
+            <div class="form-field-table">
+                <label for="totalAlc">Összes alkoholtartalom</label>
+                <input type="number" id="totalAlc" formControlName="totalAlc">
+            </div>
+            <div class="form-field-table">
+                <label for="realAlc">Tényleges alkohol</label>
+                <input type="number" id="realAlc" formControlName="realAlc">
+            </div>
+            <div class="form-field-table">
+                <label for="totalExtract">Összes extrakt</label>
+                <input type="number" id="totalExtract" formControlName="totalExtract">
+            </div>
+            <div class="form-field-table">
+                <label for="totalAcid">Összes sav</label>
+                <input type="number" id="totalcid" formControlName="totalAcid">
+            </div>
+            <div class="form-field-table">
+                <label for="volatileAcid">Illósav</label>
+                <input type="number" id="volatileAcid" formControlName="volatileAcid">
+            </div>
+            <div class="form-field-table">
+                <label for="totalSDiox">Összes kéndioxid</label>
+                <input type="number" id="totalSDiox" formControlName="totalSDiox">
+            </div>
+            <div class="form-field-table">
+                <label for="freeSDiox">Szabad kéndioxid</label>
+                <input type="number" id="freeSDiox" formControlName="freeSDiox">
+            </div>
+            <div class="form-field-table">
+                <label for="totalSugar">Összes cukor</label>
+                <input type="number" id="totalSugar" formControlName="totalSugar">
+            </div>
+            <div class="form-field-table">
+                <label for="sugarFreeExtract">Cukormentes extrakt</label>
+                <input type="number" id="sugarFreeExtract" formControlName="sugarFreeExtract">
+            </div>
+            <div class="form-field-table">
+                <label for="titratableAcid">Titrálható sav</label>
+                <input type="number" id="titratableAcid" formControlName="titratableAcid">
+            </div>
+            <div class="form-field-table">
+                <label for="ph">pH érték</label>
+                <input type="number" id="ph" formControlName="ph">
+            </div>
+            <button type="submit" class="submit-form-button" [disabled]="form.invalid">
+                {{ mode == 'create' ? 'Bor hozzáadása' : 'Mentés'}}
+            </button>
+        </div>
+    </form>
+</div>  

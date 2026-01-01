@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/generic/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-wine-details',
@@ -15,6 +16,7 @@ import { AuthService } from '../../../services/auth.service';
 
 export class WineDetailsComponent implements OnInit {
   wine!: WineDTO;
+  public fileBaseUrl = environment.fileUrl;
 
   constructor(
     private winesService: WinesService,

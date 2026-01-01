@@ -11,6 +11,7 @@ import { EbikeHomeComponent } from './components/ebike/ebike-home/ebike-home.com
 import { GuesthouseHomeComponent } from './components/guesthouse/guesthouse-home/guesthouse-home.component';
 import { SupportHomeComponent } from './components/support/support-home/support-home.component';
 import { ContactHomeComponent } from './components/contact/contact-home/contact-home.component';
+import { WineFormComponent } from './components/wine/forms/wine-form/wine-form.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -33,5 +34,6 @@ export const routes: Routes = [
     {path: 'ebike', component: EbikeHomeComponent },
     {path: 'vendeghaz', component: GuesthouseHomeComponent},
     {path: 'tamogatas', component: SupportHomeComponent},
-    {path: 'kapcsolat', component: ContactHomeComponent}
+    {path: 'kapcsolat', component: ContactHomeComponent},
+    {path: 'test', component: WineFormComponent}
 ];

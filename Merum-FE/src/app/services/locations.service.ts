@@ -17,7 +17,7 @@ export interface LocationDTO {
   orientation: string,
   plantationMethod: string,
   year: number,
-  grapeVarietyEntityIds: string,
+  grapeVarietyEntityIds: number[],
   latitude: string,
   longitude: string
 }
@@ -35,7 +35,7 @@ export interface AddLocationDTO {
   orientation: string,
   plantationMethod: string,
   year: number,
-  grapeVarietyEntityIds: string,
+  grapeVarietyEntityIds: number[],
   latitude: string,
   longitude: string
 }

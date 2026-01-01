@@ -53,3 +53,12 @@ mat-select{
 .wine-list-header select{
     margin-left: 5px;
 }
+
+.add-wine-button {
+    background-color:var(--merum-orange);
+    color: white;
+}
+
+.add-wine-button:hover{
+    cursor: pointer;
+}

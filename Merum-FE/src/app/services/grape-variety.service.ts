@@ -21,4 +21,8 @@ export class GrapeVarietiesService {
   getAllGrapeVarieties(): Observable<GrapeVarietyDTO[]>{
     return this.http.get<GrapeVarietyDTO[]>(`${this.apiUrl}/grapeVarieties/getAllGrapeVarieties`);
   }
+
+  getGrapeVarietyById(id: number): Observable<GrapeVarietyDTO>{
+    return this.http.get<GrapeVarietyDTO>(`${this.apiUrl}/grapeVarieties/getGrapeVarietyById/${id}`)
+  }
 }

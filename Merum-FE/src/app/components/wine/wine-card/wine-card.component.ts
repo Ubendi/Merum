@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-wine-card',
@@ -14,6 +15,8 @@ import { CommonModule } from '@angular/common';
 
 export class WineCardComponent implements OnInit {
   @Input() wine!: WineDTO;
+
+  public fileBaseUrl = environment.fileUrl;
 
   constructor(
     private winesService: WinesService,

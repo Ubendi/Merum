@@ -5,72 +5,41 @@ import { environment } from '../../environments/environment'
 import { LocationDTO } from './locations.service';
 import { GrapeVarietyDTO } from './grape-variety.service';
 
-
-export interface WineDTO {
-  id: number,
+interface WineBase {
   name: string,
   year: number,
-  description: string,
+  description: string | null,
+  relativeDens: number | null,
+  totalAlc: number | null,
+  realAlc: number | null,
+  totalExtract: number | null,
+  totalAcid: number | null,
+  volatileAcid: number | null,
+  totalSDiox: number | null,
+  freeSDiox: number | null,
+  ph: number | null,
+  totalSugar: number | null,
+  sugarFreeExtract: number | null,
+  titratableAcid: number | null,
+  picturePath: string | null
+} 
+
+export interface WineDTO extends WineBase {
+  id: number,
   location: LocationDTO,
-  grapeVariety: GrapeVarietyDTO,
-  relativeDens: number,
-  totalAlc: number,
-  realAlc: number,
-  totalExtract: number,
-  totalAcid: number,
-  volatileAcid: number,
-  totalSDiox: number,
-  freeSDiox: number,
-  ph: number,
-  totalSugar: number,
-  sugarFreeExtract: number,
-  titratableAcid: number,
-  picturePath: string
+  grapeVariety: GrapeVarietyDTO
 }
 
-export interface AddWineDTO {
-  name: string,
-  year: number,
-  description: string,
-  locationEntityId: number,
-  grapeVarietyEntityId: number,
-  relativeDens: number,
-  totalAlc: number,
-  realAlc: number,
-  totalExtract: number,
-  totalAcid: number,
-  volatileAcid: number,
-  totalSDiox: number,
-  freeSDiox: number,
-  ph: number
-  totalSugar: number,
-  sugarFreeExtract: number,
-  titratableAcid: number,
-  picturePath: string
+export interface AddWineDTO extends WineBase {
+  locationEntityId: number | null,
+  grapeVarietyEntityId: number | null
 }
 
-export interface UpdateWineDTO {
+export interface UpdateWineDTO extends WineBase {
   id: number,
-  name: string,
-  year: number,
-  description: string,
-  locationEntityId: number,
-  grapeVarietyEntityId: number,
-  relativeDens: number,
-  totalAlc: number,
-  realAlc: number,
-  totalExtract: number,
-  totalAcid: number,
-  volatileAcid: number,
-  totalSDiox: number,
-  freeSDiox: number,
-  ph: number,
-  totalSugar: number,
-  sugarFreeExtract: number,
-  titratableAcid: number,
-  picturePath: string
+  locationEntityId: number | null,
+  grapeVarietyEntityId: number | null
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -101,29 +70,11 @@ export class WinesService {
     return this.http.put<WineDTO>(`${this.apiUrl}/updateWineById/${updateWineDTO.id}`, updateWineDTO)
   }
 
-
-
-  wineDtoToUpdateWineDto(wineDTO: WineDTO): UpdateWineDTO{
-    return {
-      id: wineDTO.id,
-      name: wineDTO.name,
-      year: wineDTO.year,
-      description: wineDTO.description,
-      locationEntityId: wineDTO.location.id,
-      grapeVarietyEntityId: wineDTO.grapeVariety.id,
-      relativeDens: wineDTO.relativeDens,
-      totalAlc: wineDTO.totalAlc,
-      realAlc: wineDTO.realAlc,
-      totalExtract: wineDTO.totalExtract,
-      totalAcid: wineDTO.totalAcid,
-      volatileAcid: wineDTO.volatileAcid,
-      totalSDiox: wineDTO.totalSDiox,
-      freeSDiox: wineDTO.freeSDiox,
-      ph: wineDTO.ph,
-      totalSugar: wineDTO.totalSugar,
-      sugarFreeExtract: wineDTO.sugarFreeExtract,
-      titratableAcid: wineDTO.titratableAcid,
-      picturePath: wineDTO.picturePath
-    }
+  wineDtoToUpdateWineDto({location, grapeVariety, ...rest}: WineDTO): UpdateWineDTO{
+      return {
+        ...rest,
+        locationEntityId: location.id,
+        grapeVarietyEntityId: grapeVariety.id
+      };
   }
 }

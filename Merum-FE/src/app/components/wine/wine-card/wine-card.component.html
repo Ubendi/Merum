@@ -1,6 +1,6 @@
 <div class="wine-card" *ngIf="wine">
     <a [routerLink]="['/borok',wine.id]" class="wine-card-image-container">
-        <img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image">
+        <img [src]="fileBaseUrl+'/'+wine.picturePath" alt="{{ wine.name }}" class="wine-card-image">
     </a>
     <h2 class="wine-header-text" style="margin-bottom:5px">
         <a [routerLink]="['/borok',wine.id]">{{ wine.name }}</a>

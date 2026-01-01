@@ -1,7 +1,7 @@
 @if (wine) {
   <div class="wine-card">
     <div class="wine-image-container">
-      <img [src]="wine.picturePath" alt="{{ wine.name }}" class="wine-card-image"/>
+      <img [src]="fileBaseUrl+'/'+wine.picturePath" alt="{{ wine.name }}" class="wine-card-image"/>
     </div>
 
     <div class="wine-content">

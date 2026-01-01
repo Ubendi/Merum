@@ -1,0 +1,49 @@
+.wine-form{
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    border: 1px solid black;
+    width: 600px;
+    margin: 50px;
+    padding: 20px;
+}
+
+.form-left{
+    width: 300px;
+}
+
+.form-right{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 10px;
+}   
+
+.form-field-main input{
+    width: 250px;   
+}
+
+.form-field-table{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 9px;
+}
+
+.form-field-table input{
+    width: 50px
+}
+
+.form-field-table label{
+    text-align: right;
+    margin-right: 10px;
+}
+
+.submit-form-button{
+    margin-top: auto;
+    height: 50px;
+}

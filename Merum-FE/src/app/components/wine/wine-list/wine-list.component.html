@@ -1,5 +1,8 @@
 <div class="wine-list-header">
     <div class="wine-filter-container" (change)="onFilterChanged()">
+        @if (this.authService.isLoggedIn()){
+            <button class="add-wine-button" [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
+        }
         <div class="selector">
             <mat-label for="location">Régió:</mat-label>
             <select id="location" name ="location" [(ngModel)]="selectedLocation">
@@ -25,8 +28,3 @@
         <app-wine-card [wine] = "wine" [@fadeWineList]></app-wine-card>
     }
 </div>
-@if (this.authService.isLoggedIn()){
-    <div clas="wine-list-controls-container">
-       <button [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
-    </div>
-}

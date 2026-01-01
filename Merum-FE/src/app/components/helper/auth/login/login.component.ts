@@ -4,8 +4,8 @@ import { MatDialogContent, MatDialogRef } from "@angular/material/dialog";
 import { MatLabel, MatFormField } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input'
 import { passwordValidator } from '../../../../validators/password.validator';
-import { LoginDTO } from '../../../../services/auth.service';
-import { AuthService } from '../../../../services/auth.service';
+import { LoginDTO } from '../../../../services/generic/auth.service';
+import { AuthService } from '../../../../services/generic/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

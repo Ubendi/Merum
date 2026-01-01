@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../auth/login/login.component';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/generic/auth.service';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({

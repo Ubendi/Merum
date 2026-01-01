@@ -39,11 +39,10 @@
   .wine-desc-container {
     display: block;
     display: -webkit-box;
-    height: 90px;
     margin-block-start: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
   }
   

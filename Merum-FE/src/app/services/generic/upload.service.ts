@@ -11,11 +11,14 @@ export class UploadService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient){ }
 
-  uploadFile(file: File, folder: string, subFolder: string): Observable <any> {
+  uploadFile(file: File, folder: string, subFolder: string, desiredName?: string): Observable <any> {
     const formData: FormData = new FormData();
     formData.append('file',file,file.name);
     formData.append('subFolder',subFolder);
     formData.append('folder',folder);
+    if(desiredName){
+      formData.append('desiredName',desiredName);
+    }
 
     return this.http.post(`${this.apiUrl}/upload`,formData);
   }
