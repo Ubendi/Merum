@@ -3,10 +3,11 @@ using Merum_BE.DTO;
 
 namespace Merum_BE.BL
 {
-    public class WinesService(UnitOfWork unitOfWork, ILogger<WinesService> logger)
+    public class WinesService(UnitOfWork unitOfWork, ILogger<WinesService> logger, FileService fileService)
     {
         private readonly UnitOfWork _unitOfWork = unitOfWork;
         private readonly ILogger<WinesService> _logger = logger;
+        private readonly FileService _fileService = fileService;
 
         public List<WineDTO> GetAllWinesService()
         {
@@ -38,7 +39,7 @@ namespace Merum_BE.BL
             bool isWineDeleted = await _unitOfWork.WineRepository.DeleteWineByIdAsync(wineDTO);
             if (wineDTO.PicturePath != null)
             {
-                this.DeleteWinePicture(wineDTO.PicturePath);
+               await _fileService.DeleteFileAsync(wineDTO.PicturePath);
             }
             return isWineDeleted;
         }
@@ -46,23 +47,13 @@ namespace Merum_BE.BL
         public async Task<WineDTO> UpdateWineServiceAsync(UpdateWineDTO updateWineDTO)
         {
             WineDTO cur = GetWineByIdService(updateWineDTO.Id);
+            if(cur.PicturePath != null && cur.PicturePath != updateWineDTO.PicturePath)
+            {
+                await _fileService.DeleteFileAsync(cur.PicturePath);
+            }
             _logger.LogInformation($"Updating wine (id: {updateWineDTO.Id})");
             return await _unitOfWork.WineRepository.UpdateWineAsync(updateWineDTO);
         }
 
-        public bool DeleteWinePicture(string picturePath) 
-        {
-            var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "Pics", "Wines");
-            var fileName = Path.GetFileName(picturePath);
-            if (_unitOfWork.WineRepository.IsWinePictureInUse(picturePath))
-            {
-                _logger.LogInformation($"{fileName} is in use by another wine");
-                return false;
-            }
-            var fullPath = Path.Combine(rootPath, fileName);
-            File.Delete(fullPath);
-            _logger.LogInformation($"{fileName} is deleted");
-            return true;
-        }
     }
 }

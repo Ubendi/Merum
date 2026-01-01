@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Merum_BE.BL;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Merum_BE.Controllers
 {
@@ -7,32 +8,22 @@ namespace Merum_BE.Controllers
     public class GenericController : ControllerBase
     {
         private readonly ILogger _logger;
+        private readonly FileService _uploadService;
 
-        public GenericController(ILogger<GenericController> logger)
+        public GenericController(ILogger<GenericController> logger, FileService uploadService)
         {
             _logger = logger;
+            _uploadService = uploadService;
         }
 
         [HttpPost("upload")]
-        public async Task<ActionResult> Upload (IFormFile file, [FromForm] string folder, [FromForm] string subFolder)
+        public async Task<ActionResult> Upload (IFormFile file, [FromForm] string folder, [FromForm] string subFolder, [FromForm] string? desiredName)
         {
-            if (file == null || file.Length == 0) { return BadRequest("No file"); }
-
-            var rootDir = Directory.GetCurrentDirectory();
-            var uploadPath = Path.Combine(rootDir,folder,subFolder,file.FileName);
-
-            if (!Directory.Exists(Path.Combine(rootDir, folder, subFolder))) 
-            { Directory.CreateDirectory(Path.Combine(rootDir, folder, subFolder)); }
-
-            using (FileStream stream = new FileStream(uploadPath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-            var relativePath = Path.Combine(folder, subFolder, file.FileName).Replace("\\", "/");
-            var fullUrl = $"{Request.Scheme}://{Request.Host}/{relativePath}";
-
-            return Ok(new { path = fullUrl });
+            var relativePath = await _uploadService.UploadFileAsync(file, folder, subFolder, desiredName);
+            return Ok(new { path = relativePath });
         }
+
+
      
     }
 }
