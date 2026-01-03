@@ -55,6 +55,41 @@ export class WineDetailsComponent implements OnInit {
     }
   }
 
+  archiveWine(): void{
+    if(this.wine){
+      const confirmed = window.confirm(`Valóban archiválni szeretné: ${this.wine.name} (${this.wine.year})`)
+      if(confirmed){
+        this.winesService.archiveWine(this.wine.id).subscribe({
+          next: response => {
+            alert(`${response.name} sikeresen archiválva`);
+            this.router.navigate([`/borok/${response.id}`])
+            this.wine.archivedFlag = true;
+          },
+          error: err => {
+            alert('Hiba történt');
+            console.error('Error archiving wine:', err)
+          }
+        })
+      }
+    }
+  }
+
+  unarchiveWine(): void{
+    if(this.wine){
+      this.winesService.unarchiveWine(this.wine.id).subscribe({
+        next: response => {
+          alert(`${response.name} sikeresen visszaállítva`);
+          this.router.navigate([`/borok/${response.id}`])
+          this.wine.archivedFlag = false;
+        },
+        error: err => {
+          alert('Hiba történt');
+          console.error('Error unarchiving wine:', err)
+        }
+      })
+    }
+  }
+
   navigateToEditWine(wineId: number): void {
     this.router.navigate(['/borok/szerkesztes', wineId])
   }

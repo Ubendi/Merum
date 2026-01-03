@@ -1,67 +1,62 @@
-<div>
-    <div class="location-card" *ngIf="location">
-        <!-- <a [routerLink]="['/borok',location.id]" class="location-card-image-container">
-            <img [src]="location.picturePath" alt="{{ location.name }}" class="location-card-image">
-        </a> -->
-        <h2 class="location-header-text" style="margin-bottom:5px">
-            <a [routerLink]="['/teruletek',location.id]">{{ location.title }}</a>
-        </h2>
-        <div class="location-details-table">
-            <table>
-                <tr>
-                    <th>Település</th>
-                    <td>{{ location.city }}</td>
-                </tr>
-                <tr>
-                    <th>Dűlő</th>
-                    <td>{{ location.name }}</td>
-                </tr>
-                <tr>
-                    <th>Művelt terület</th>
-                    <td>{{ location.area }} m<sup>2</sup></td>
-                </tr>
-                <tr>
-                    <th>Tengerszint feletti magasság</th>
-                    <td>{{ location.altitude }}</td>
-                </tr>
-                <tr>
-                    <th>Telepítés éve</th>
-                    <td>{{ location.year }}</td>
-                </tr>
-                <tr>
-                    <th>Ültetvény fekvése</th>
-                    <td>{{ location.orientation }}</td>
-                </tr>
-                <tr>
-                    <th>Lejtőtartomány</th>
-                    <td>{{ location.grade }}</td>
-                </tr>
-                <tr>
-                    <th>Fajta</th>
-                    <td>{{ location.grapeVarietyNames }}</td>
-                </tr>
-                <tr>
-                    <th>Művelési mód</th>
-                    <td>{{ location.cultivationMode }}</td>
-                </tr>
-                <tr>
-                    <th>Sor- és tőtávolság</th>
-                    <td>{{ location.lineDistance }}</td>
-                </tr>
-                <tr>
-                    <th>Telepítés jellege</th>
-                    <td>{{ location.plantationMethod }}</td>
-                </tr>
-                <tr>
-                    <th>Talaj típusa</th>
-                    <td>{{ location.soilType }}</td>
-                </tr>
-            </table>
-        </div>
-        <div class="maps-container">
-            <iframe width="100%" height="100%" marginheight="0" marginwidth="0" 
-                [src]="location.safeUrl">
-            </iframe>
-        </div>
+<div class="location-card" *ngIf="location">
+    <h2 class="location-header-text" style="margin-bottom:5px">
+        <a [routerLink]="['/teruletek',location.id]">{{ location.title }}</a>
+    </h2>
+    <div class="location-details-table">
+        <table>
+            <tr>
+                <th>Település</th>
+                <td>{{ location.city }}</td>
+            </tr>
+            <tr>
+                <th>Dűlő</th>
+                <td>{{ location.name }}</td>
+            </tr>
+            <tr>
+                <th>Művelt terület</th>
+                <td>{{ location.area }} m<sup>2</sup></td>
+            </tr>
+            <tr>
+                <th>Tengerszint feletti magasság</th>
+                <td>{{ location.altitude }}</td>
+            </tr>
+            <tr>
+                <th>Telepítés éve</th>
+                <td>{{ location.year }}</td>
+            </tr>
+            <tr>
+                <th>Ültetvény fekvése</th>
+                <td>{{ location.orientation }}</td>
+            </tr>
+            <tr>
+                <th>Lejtőtartomány</th>
+                <td>{{ location.grade }}</td>
+            </tr>
+            <tr>
+                <th>Fajta</th>
+                <td>{{ location.grapeVarietyNames }}</td>
+            </tr>
+            <tr>
+                <th>Művelési mód</th>
+                <td>{{ location.cultivationMode }}</td>
+            </tr>
+            <tr>
+                <th>Sor- és tőtávolság</th>
+                <td>{{ location.lineDistance }}</td>
+            </tr>
+            <tr>
+                <th>Telepítés jellege</th>
+                <td>{{ location.plantationMethod }}</td>
+            </tr>
+            <tr>
+                <th>Talaj típusa</th>
+                <td>{{ location.soilType }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="maps-container">
+        <iframe width="100%" height="100%" marginheight="0" marginwidth="0" 
+            [src]="location.safeUrl">
+        </iframe>
     </div>
 </div>

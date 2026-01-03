@@ -19,7 +19,7 @@
   overflow: hidden;
   padding-top: 20px;
   padding-bottom: 20px;
-  outline: 2px dashed red;
+  // outline: 2px dashed red;
 }
 
 .wine-card-image {
@@ -29,7 +29,7 @@
   max-width: 80%;
   max-height: 100%;
   display: block;
-  outline: 2px dashed blue;
+  // outline: 2px dashed blue;
 }
 
 .wine-content {
@@ -111,7 +111,7 @@
 }
 
 .action-btn.back {
-  background-color: darkgray;
+  background-color: #464443;
   color: white
 }
 
@@ -135,4 +135,13 @@
 
 .action-btn.edit:hover {
   background-color: #2471a3;
+}
+
+.action-btn.archive {
+  background-color: rgb(161, 124, 0);
+}
+
+.action-btn.archive.archived{
+  background-color: rgb(0, 90, 0);
+  color: white;
 }

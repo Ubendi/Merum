@@ -3,7 +3,7 @@ import { Component, Input, OnInit, output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { WineFormViewModel } from '../../../../models/view-models';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
-import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-variety.service';
+import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 
 @Component({
   selector: 'app-wine-form',
@@ -47,7 +47,9 @@ export class WineFormComponent implements OnInit {
     totalSugar: this.fb.control<number | null>(null),
     sugarFreeExtract: this.fb.control<number | null>(null),
     titratableAcid: this.fb.control<number | null>(null),
-    picturePath: this.fb.control<string | null>(null)
+    picturePath: this.fb.control<string | null>(null),
+    quantity: this.fb.control<number | null>(null),
+    archivedFlag: this.fb.nonNullable.control<boolean>(false)
   });
 
   ngOnInit(){
@@ -66,7 +68,6 @@ export class WineFormComponent implements OnInit {
       value: this.form.getRawValue(),
       file: this.file,
     });
-    console.log(`Emitted ${this.form.getRawValue()}, ${this.file}`)
   }
 
   onPictureSelected(event: any): void{

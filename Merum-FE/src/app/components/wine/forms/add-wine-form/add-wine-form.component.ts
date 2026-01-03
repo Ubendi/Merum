@@ -5,10 +5,11 @@ import { Router, RouterModule } from '@angular/router';
 import { LocationDTO } from '../../../../services/locations.service';
 import { CommonModule } from '@angular/common';
 import { UploadService } from '../../../../services/generic/upload.service';
-import { GrapeVarietyDTO } from '../../../../services/grape-variety.service';
+import { GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 import { WineFormComponent } from "../wine-form/wine-form.component";
 import { WineFormViewModel } from '../../../../models/view-models';
 import { mapWineVmToAddWineDto } from '../../../../models/mapper';
+import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-add-wine-form',
@@ -30,20 +31,25 @@ export class AddWineFormComponent {
     private router: Router
   ){}
 
-  addWine({ value, file}: {value: WineFormViewModel; file?: File}){
-    const addWineDTO = mapWineVmToAddWineDto(value);
-    if(file){
-      this.uploadService.uploadFile(file, 'Pics', 'Wines',value.name).subscribe(result => {
-        value.picturePath = result.path;
-        addWineDTO.picturePath = value.picturePath;
-      })
-    }
-    this.winesService.addWine(addWineDTO).subscribe(response => {
+  addWine({ value, file}: {value: WineFormViewModel, file?: File}){
+    const dto = mapWineVmToAddWineDto(value);
+
+    const add$ = file ? this.uploadService.uploadFile(file, 'Pics', 'Wines', value.name) : of(null);
+    
+    add$.pipe(
+      tap(result => {
+        if(result) dto.picturePath = result.path;
+      }),
+      switchMap(() => this.winesService.addWine(dto))
+    ).subscribe({
+      next: response => {
         alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
-        this.router.navigate(['/borok']);
-      }, error => {
+        console.log(response)
+        this.router.navigate([`/borok/${response.id}`])
+      }, error: err => {
         alert('Hiba történt');
-        console.error('Error adding wine ', error);
-      });
+        console.error('Error adding wine ', err);
+      }
+    })
   }
 }

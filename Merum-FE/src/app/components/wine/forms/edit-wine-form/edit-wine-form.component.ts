@@ -5,10 +5,11 @@ import { UploadService } from '../../../../services/generic/upload.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-variety.service';
+import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 import { WineFormComponent } from "../wine-form/wine-form.component";
 import { WineFormViewModel } from '../../../../models/view-models';
 import { mapWineDtoToWineVm, mapWineVmToUpdateWineDto } from '../../../../models/mapper';
+import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-wine-form',
@@ -44,22 +45,29 @@ export class EditWineFormComponent implements OnInit {
     })
   }
 
-  updateWine({ value, file}: { value: WineFormViewModel; file?: File}){
-    const updateWineDTO = mapWineVmToUpdateWineDto(value);
-    updateWineDTO.id = this.wineId;
-    if(file){
-      this.uploadService.uploadFile(file, 'Pics', 'Wines', value.name).subscribe(result => {
-        value.picturePath = result.path;
-        updateWineDTO.picturePath = value.picturePath;
-      })
-    }
-    this.winesService.updateWine(updateWineDTO).subscribe(response => {
-        alert(`${response.name} sikeresen szerkesztve`)
+  updateWine({ value, file}: { value: WineFormViewModel, file?: File}){
+    const dto = mapWineVmToUpdateWineDto(value);
+    dto.id = this.wineId;
+
+    const upload$ = file ? this.uploadService.uploadFile(file, 'Pics', 'Wines', value.name) : of(null);
+    
+    upload$.pipe(
+      tap(result => {
+        if(result) {
+          dto.picturePath = result.path
+        }
+      }),
+      switchMap(() => this.winesService.updateWine(dto))
+    ).subscribe({
+      next: response => {
+        alert(`${response.name} sikeresen szerkesztve`);
         this.router.navigate([`/borok/${response.id}`])
-      }, error => {
+      },
+      error: err => {
         alert('Hiba történt');
-        console.error('Error updating wine:', error)
-      })
+        console.error('Error updating wine:', err)
+      }
+    })
   }
   
 }

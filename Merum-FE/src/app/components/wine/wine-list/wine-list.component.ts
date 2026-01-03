@@ -37,6 +37,7 @@ export class WineListComponent implements OnInit {
   selectedGrapeVariety?: string;
   selectedYear?: (number|string);
   selectedLocation?: string;
+  showArchived: boolean = false;
 
   constructor(
     private winesService: WinesService,
@@ -52,7 +53,9 @@ export class WineListComponent implements OnInit {
       (wines: WineDTO[]) => {
         this.wines = wines;
         this.mapArrays();
+        this.wines.sort((a,b) => Number(a.archivedFlag) - Number(b.archivedFlag))
         this.allWines = this.wines;
+        this.applyArchivedFilter();
       }
     )
   }
@@ -68,16 +71,28 @@ export class WineListComponent implements OnInit {
     this.selectedYear = 'Összes';
   }
 
-  trackWine(index: number, wine: WineDTO){
+  trackWine(wine: WineDTO){
     return wine.id;
   }
   
-  //TO FIX: all wines flash before correct list is displayed
   onFilterChanged() {
     this.wines = this.allWines.filter((wine) =>
       (this.selectedLocation === 'Összes' || wine.location.name === this.selectedLocation) &&
       (this.selectedGrapeVariety === 'Összes' || wine.grapeVariety.name === this.selectedGrapeVariety) &&
       (this.selectedYear === 'Összes' || wine.year === Number(this.selectedYear))
     );
+  }
+
+  onToggleArchived(event: Event){
+    this.showArchived = (event.target as HTMLInputElement).checked;
+    console.log(this.showArchived);
+    this.applyArchivedFilter();
+  }
+
+  applyArchivedFilter(){
+    this.wines = this.showArchived
+      ? this.allWines
+      : this.allWines.filter(w => !w.archivedFlag)
+    console.log(this.wines);
   }
 }

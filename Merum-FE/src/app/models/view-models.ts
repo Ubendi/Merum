@@ -40,5 +40,7 @@ export interface WineFormViewModel {
     totalSugar: number | null, 
     sugarFreeExtract: number | null,
     titratableAcid: number | null,
-    picturePath: string | null
+    picturePath: string | null,
+    quantity: number | null,
+    archivedFlag: boolean
 } 

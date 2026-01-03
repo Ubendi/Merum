@@ -20,7 +20,9 @@ export function mapWineVmToAddWineDto(vm: WineFormViewModel): AddWineDTO {
     totalSugar: vm.totalSugar,
     sugarFreeExtract: vm.sugarFreeExtract,
     titratableAcid: vm.titratableAcid,
-    picturePath: vm.picturePath
+    picturePath: vm.picturePath,
+    quantity: vm.quantity,
+    archivedFlag: vm.archivedFlag
   };
 }
 
@@ -51,6 +53,8 @@ export function mapWineDtoToWineVm(dto: WineDTO): WineFormViewModel {
       totalSugar: dto.totalSugar,
       sugarFreeExtract: dto.sugarFreeExtract,
       titratableAcid: dto.titratableAcid,
-      picturePath: dto.picturePath
+      picturePath: dto.picturePath,
+      quantity: dto.quantity,
+      archivedFlag: dto.archivedFlag
     };
   }

@@ -5,11 +5,6 @@
             <div class="form-field-main">
                 <label for="name">Név</label>
                 <input id="name" type="text" formControlName="name">
-                <!-- @if(form.controls.name.invalid && form.controls.name.touched){
-                    <div class="error">
-                        Name is required
-                    </div>
-                } -->
             </div>
             <div class="form-field-main">
                 <label for="year">Évjárat</label>
@@ -34,6 +29,10 @@
                         <option [value]="gv.id">{{ gv.name }}</option>
                     }
                 </select>
+            </div>
+            <div class="form-field-main">
+                <label for="quantity">Letöltve (palack)</label>
+                <input id="quantity" type="number" formControlName="quantity">
             </div>
             <div class="form-field-main">
                 <label for="picture">Kép</label>

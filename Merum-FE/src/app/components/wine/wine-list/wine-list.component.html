@@ -1,10 +1,7 @@
 <div class="wine-list-header">
     <div class="wine-filter-container" (change)="onFilterChanged()">
-        @if (this.authService.isLoggedIn()){
-            <button class="add-wine-button" [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
-        }
         <div class="selector">
-            <mat-label for="location">Régió:</mat-label>
+            <label for="location">Régió:</label>
             <select id="location" name ="location" [(ngModel)]="selectedLocation">
                 <option *ngFor="let l of locations" [value]="l">{{l || 'Összes'}}</option>
             </select>
@@ -22,6 +19,15 @@
             </select>
         </div>
     </div>
+    @if (this.authService.isLoggedIn()){
+            <div class="admin-controls">
+                <button class="add-wine-button" [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
+                <div class="selector">
+                    <label for="archived">Archív mutatása:</label>
+                    <input type="checkbox" id="archived" name="archived" [checked]="showArchived" (change)="onToggleArchived($event)">
+                </div>
+            </div>
+        }
 </div>
 <div class="wine-list">
     @for(wine of wines; track wine.id){

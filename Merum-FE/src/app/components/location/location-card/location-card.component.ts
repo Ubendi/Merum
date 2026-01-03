@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { LocationDTO, LocationsService } from '../../../services/locations.service';
-import { GrapeVarietyDTO, GrapeVarietiesService } from '../../../services/grape-variety.service';
+import { LocationsService } from '../../../services/locations.service';
+import { GrapeVarietyDTO, GrapeVarietiesService } from '../../../services/grape-varieties.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import { LocationViewModel } from '../../../models/view-models';
-import { P } from '@angular/cdk/portal-directives.d-DbeNrI5D';
 
 @Component({
   selector: 'app-location-card',
@@ -27,10 +26,10 @@ export class LocationCardComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-      this.loadLocationByIdPlain();
+      this.loadLocationById();
     }
 
-    loadLocationByIdPlain(): void {
+    loadLocationById(): void {
       this.route.params.subscribe(params => {
         const id = params['id'];
         if (id) {
@@ -44,24 +43,6 @@ export class LocationCardComponent implements OnInit {
       })
       this.location.safeUrl=this.getMapSafeUrl(this.location.latitude, this.location.longitude);
     }
-
-    loadLocationByIdExtended(): void {
-      this.route.params.subscribe(params => {
-        const id = params['id'];
-        if (id) {
-          this.locationService.getLocationById(id).subscribe(data => {
-            this.location = {
-              ...data,
-              safeUrl: this.getMapSafeUrl(data.latitude, data.longitude)
-            };
-            this.getGrapeVarietyNamesString(data.grapeVarietyEntityIds).subscribe(names => {
-              this.location.grapeVarietyNames = names;
-            });
-          });
-        }
-      });
-    }
-
 
     getMapSafeUrl(lat: string, lng: string): SafeResourceUrl {
       return this.sanitizer.bypassSecurityTrustResourceUrl(

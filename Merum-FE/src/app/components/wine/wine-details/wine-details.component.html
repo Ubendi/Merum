@@ -5,12 +5,15 @@
     </div>
 
     <div class="wine-content">
-      <h2 class="wine-title">{{ wine.name }} ({{ wine.year }})</h2>
+      <h2 class="wine-title">{{ wine.archivedFlag ? 'ARCHIVÁLT - ' : '' }} {{ wine.name }} ({{ wine.year }})</h2>
 
       <div class="wine-details-container">
         <div class="wine-desc-container">
           <p class="wine-description">{{ wine.description }}</p>
           <p class="wine-region">Régió: <strong>{{ wine.location.name }}</strong></p>
+          @if(wine.quantity !== null){
+            <p class="wine-quantity">Letöltve: {{ wine.quantity }} palack</p>
+          }
         </div>
 
         <div class="wine-info-container">
@@ -95,8 +98,10 @@
       <div class="wine-actions">
         <button class="action-btn back" (click)="navigateToWines()">Vissza a borokhoz</button>
         @if (authService.isLoggedIn()) {
-          <button class="action-btn delete" (click)="deleteWine()">Törlés</button>
           <button class="action-btn edit" (click)="navigateToEditWine(wine.id)">Szerkesztés</button>
+          <button class="action-btn delete" (click)="deleteWine()">Törlés</button>
+          <button class="action-btn archive" [class.archived]="wine.archivedFlag"
+            (click)="wine.archivedFlag ? unarchiveWine() : archiveWine()">{{ wine.archivedFlag ? 'Visszaállítás' : 'Archiválás'}}</button>
         }
       </div>
     </div>

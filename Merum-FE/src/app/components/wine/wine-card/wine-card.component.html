@@ -1,12 +1,15 @@
-<div class="wine-card" *ngIf="wine">
-    <a [routerLink]="['/borok',wine.id]" class="wine-card-image-container">
-        <img [src]="fileBaseUrl+'/'+wine.picturePath" alt="{{ wine.name }}" class="wine-card-image">
-    </a>
-    <h2 class="wine-header-text" style="margin-bottom:5px">
-        <a [routerLink]="['/borok',wine.id]">{{ wine.name }}</a>
-    </h2>
-    <h3 class="wine-header-text" style="margin-top:5px; margin-block-end:5px">{{ wine.year }} - {{ wine.location.name }}</h3>
-    <div class="wine-desc-container">
-        {{ wine.description }}
+@if(wine){
+    <div class="wine-card" [ngClass]="{'archived': wine.archivedFlag}">
+        <a [routerLink]="['/borok',wine.id]" class="wine-card-image-container">
+            <img [src]="fileBaseUrl+'/'+wine.picturePath" alt="{{ wine.name }}" class="wine-card-image">
+        </a>
+        <h2 class="wine-header-text" style="margin-bottom:5px">
+            <a [routerLink]="['/borok',wine.id]">{{ wine.name }}</a>
+        </h2>
+        <h3 class="wine-header-text" style="margin-top:5px; margin-block-end:5px">{{ wine.year }} - {{ wine.location.name }}</h3>
+        <div class="wine-desc-container">
+            {{ wine.description }}
+        </div>
     </div>
-</div>
+}
+

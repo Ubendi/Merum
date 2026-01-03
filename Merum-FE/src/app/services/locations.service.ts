@@ -45,20 +45,20 @@ export interface AddLocationDTO {
 })
 export class LocationsService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}/locations`;
 
   constructor(private http: HttpClient) { }
 
   addLocation(addLocationDTO: AddLocationDTO): Observable<LocationDTO>{
-    return this.http.post<LocationDTO>(`${this.apiUrl}/locations/addLocation`, addLocationDTO);
+    return this.http.post<LocationDTO>(`${this.apiUrl}/addLocation`, addLocationDTO);
   }
 
   getAllLocations(): Observable<LocationDTO[]>{
-    return this.http.get<LocationDTO[]>(`${this.apiUrl}/locations/getAllLocations`);
+    return this.http.get<LocationDTO[]>(`${this.apiUrl}/getAllLocations`);
   }
 
   getLocationById(id: number): Observable<LocationDTO>{
-    return this.http.get<LocationDTO>(`${this.apiUrl}/locations/getLocationById/${id}`);
+    return this.http.get<LocationDTO>(`${this.apiUrl}/getLocationById/${id}`);
   }
 
 }

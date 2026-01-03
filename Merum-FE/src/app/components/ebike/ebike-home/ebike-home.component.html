@@ -1,23 +1,27 @@
 <div class="ebike-container">
-    <div class="ebike-pic-container">
+    <div class="ebike-info-container">
         <p class="ebike-header">Elektromos kerékpár túrák</p>
         <p class="ebike-subheader">Miért Tállya, miért az elektromos bicikli?</p>
-        <img src="assets/pictures/line.png" style="width: 80%;">
-        <img src="assets/pictures/ruga_pro_10_transparent.png" style="width: 100%;"> 
-    </div>
-    <div class="ebike-desc-container">
-        <p class="ebike-desc-line">Tállya a Tokaji Borvidék egyik gyöngyszeme</p>
-        <p class="ebike-desc-line">A település fekvése, középkori városszerkezete különleges</p>
-        <p class="ebike-desc-line">Már egy rövid szőlők közötti, erdei biciklizés is nagy élményt nyújt</p>
-        <p class="ebike-desc-line">Élményszerű dűlőtúrák, pincelátogatások az egész Tokaji Borvidékre szervezhetők</p>
-        <p class="ebike-desc-line">Tematikus túrák lehetősége adott: a Zempléni hegység páratlan geológiai, építészeti, történelmi, irodalmi helyszínei könnyedén felkereshetők, tematikus útvonal ajánlatainkkal segítjük vendégeinket</p>
-        <p class="ebike-desc-line">A régió távolabbi kiindulópontjaira is kiszállíthatjuk a vendégeket és a bicikliket</p>
-        <p class="ebike-desc-line">Nem kell sportolónak lenni a bringázáshoz, mivel az elektromos rásegítés megkönnyíti az emelkedők leküzdését</p>
-        <p class="ebike-desc-line">Igény szerint biciklis vezetést is biztosítunk, különleges, izgalmas helyszíneket kereshetünk fel</p>
-        <div class="ebike-docs-container">
-            <a href="assets/docs/ebike_spec.pdf" target="_blank">Kerékpár Specifikációk 🚴</a>
-            <a href="assets/docs/aszf.pdf" target="_blank">🚴 Általános Szerződési Feltételek</a>
+        <img src="assets/pictures/line.png" style="width: 100%;">
+        <div class="ebike-desc-container">
+            <p class="ebike-desc-line">Tállya a Tokaji Borvidék egyik gyöngyszeme</p>
+            <p class="ebike-desc-line">A település fekvése, középkori városszerkezete különleges</p>
+            <p class="ebike-desc-line">Már egy rövid szőlők közötti, erdei biciklizés is nagy élményt nyújt</p>
+            <p class="ebike-desc-line">Élményszerű dűlőtúrák, pincelátogatások az egész Tokaji Borvidékre szervezhetők</p>
+            <p class="ebike-desc-line">Tematikus túrák lehetősége adott: a Zempléni hegység páratlan geológiai, építészeti, történelmi, irodalmi helyszínei könnyedén felkereshetők, tematikus útvonal ajánlatainkkal segítjük vendégeinket</p>
+            <p class="ebike-desc-line">A régió távolabbi kiindulópontjaira is kiszállíthatjuk a vendégeket és a bicikliket</p>
+            <p class="ebike-desc-line">Nem kell sportolónak lenni a bringázáshoz, mivel az elektromos rásegítés megkönnyíti az emelkedők leküzdését</p>
+            <p class="ebike-desc-line">Igény szerint biciklis vezetést is biztosítunk, különleges, izgalmas helyszíneket kereshetünk fel</p>
+            <div class="ebike-docs-container">
+                <a href="assets/docs/ebike_spec.pdf" target="_blank">Kerékpár Specifikációk 🚴</a>
+                <a href="assets/docs/aszf.pdf" target="_blank">🚴 Általános Szerződési Feltételek</a>
         </div>
     </div>
+        <img src="assets/pictures/ruga_pro_10_transparent.png" style="width: 100%;"> 
+    </div>
+    <div class="ebike-tours-container">
+        @for(ebikeTour of ebikeTours; track ebikeTour.id){
+            <app-ebike-tour-card [ebikeTour]="ebikeTour"></app-ebike-tour-card>
+        }
+    </div>
 </div>
-<div class="ebike-tours-container"></div>

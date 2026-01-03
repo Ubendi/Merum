@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment'
 import { LocationDTO } from './locations.service';
-import { GrapeVarietyDTO } from './grape-variety.service';
+import { GrapeVarietyDTO } from './grape-varieties.service';
 
 interface WineBase {
   name: string,
@@ -21,7 +21,9 @@ interface WineBase {
   totalSugar: number | null,
   sugarFreeExtract: number | null,
   titratableAcid: number | null,
-  picturePath: string | null
+  picturePath: string | null,
+  quantity: number | null,
+  archivedFlag: boolean
 } 
 
 export interface WineDTO extends WineBase {
@@ -68,6 +70,14 @@ export class WinesService {
 
   updateWine(updateWineDTO: UpdateWineDTO): Observable<WineDTO>{
     return this.http.put<WineDTO>(`${this.apiUrl}/updateWineById/${updateWineDTO.id}`, updateWineDTO)
+  }
+
+  archiveWine(id: number): Observable<WineDTO>{
+    return this.http.patch<WineDTO>(`${this.apiUrl}/${id}/archive`, {})
+  }
+
+  unarchiveWine(id: number): Observable<WineDTO>{
+    return this.http.patch<WineDTO>(`${this.apiUrl}/${id}/unarchive`, {})
   }
 
   wineDtoToUpdateWineDto({location, grapeVariety, ...rest}: WineDTO): UpdateWineDTO{
