@@ -1,0 +1,98 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": ""
+  },
+  "analysisStartTime": "2026-10-30T12:36:33.5517209Z",
+  "analysisEndTime": "2026-10-30T12:36:34.2025196Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 1,
+      "issues": 1,
+      "incidents": 1,
+      "effort": 0
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 0,
+        "Optional": 0,
+        "Potential": 0,
+        "Information": 1
+      },
+      "category": {
+        "Pkg": 1
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "Merum-BE.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "Merum-BE",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "isTestProject": false,
+        "numberOfFiles": 73,
+        "numberOfCodeFiles": 71,
+        "linesTotal": 7325,
+        "linesOfCode": 7286,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "2e3ac259-cb8b-4fc2-b313-9d0cbf6ee026",
+          "ruleId": "Pkg.0001",
+          "description": "Project references \u0027AutoMapper\u0027 15.0.1; proposed upgrade to 16.2.0.",
+          "projectPath": "Merum-BE.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "AutoMapper, 15.0.1",
+              "protected": "AutoMapper, 15.0.1"
+            },
+            "kind": "File",
+            "path": "Merum-BE.csproj",
+            "snippet": "AutoMapper, 15.0.1",
+            "protectedSnippet": "AutoMapper, 15.0.1",
+            "label": "AutoMapper 15.0.1",
+            "properties": {
+              "PackageId": "AutoMapper",
+              "PackageVersion": "15.0.1",
+              "PackageNewVersion": "16.2.0",
+              "PackageReplacements": null
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "Pkg.0001": {
+      "id": "Pkg.0001",
+      "isFeature": false,
+      "description": "Project references a package included in this upgrade.\n\nThe project references one of the packages being upgraded. This finding records the reference (current and proposed version) so the assessment lists every affected project even when no breaking API changes were detected.",
+      "label": "Project references an upgraded package",
+      "severity": "Information",
+      "effort": 0
+    }
+  }
+}
