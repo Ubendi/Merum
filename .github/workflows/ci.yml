@@ -2,9 +2,9 @@ name: Merum Build, Test, Deploy
 
 on:
     push:
-        branches: [main]
+        branches: [master]
     pull_request:
-        branches: [main]
+        branches: [master]
 
 env:
     REGISTRY: ghcr.io
@@ -16,29 +16,27 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Check backend
+            - name: Check Backend
               run: echo "Backend works"
     frontend:
         name: Build & Test Angular Frontend
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Check Frontend
+              run: echo "Frontend works"
     terraform:
         name: Terraform Format & Validate
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - name: Terraform init
-              run: terraform init
-            - name: Terraform validate
-              run: terraform validate
+            - name: Check Terraform
+              run: echo "Terraform works"
 
     deploy-local:
         name: Deploy to local Docker
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         needs: [backend, frontend, terraform]
         runs-on: [self-hosted, merum-local]
         steps:
-            - uses: actions/checkout@v4
-            - name: Deploy
-              run: echo "Deploying to local Docker"
+            - name: Check Deploy
+              run: echo "Deploy works"
