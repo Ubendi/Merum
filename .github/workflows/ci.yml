@@ -8,7 +8,7 @@ on:
 
 env:
     REGISTRY: ghcr.io
-    IMAGE_PREXIF: ghcr.io/${{ github.repository_owner }}/merum
+    IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}/merum
 
 jobs:
     backend:
@@ -16,6 +16,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Check backend
+              run: echo "Backend works"
     frontend:
         name: Build & Test Angular Frontend
         runs-on: ubuntu-latest
@@ -24,9 +26,19 @@ jobs:
     terraform:
         name: Terraform Format & Validate
         runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Terraform init
+              run: terraform init
+            - name: Terraform validate
+              run: terraform validate
 
     deploy-local:
         name: Deploy to local Docker
         if: github.ref == 'refs/heads/main'
         needs: [backend, frontend, terraform]
         runs-on: [self-hosted, merum-local]
+        steps:
+            - uses: actions/checkout@v4
+            - name: Deploy
+              run: echo "Deploying to local Docker"
