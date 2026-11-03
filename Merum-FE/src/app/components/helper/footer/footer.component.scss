@@ -1,0 +1,43 @@
+.footer-base {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    height: 60px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.contact-info {
+  display: flex;
+  width: 35%;
+  justify-content: space-between;
+}
+
+p {
+  margin: 5px;
+}
+
+h3 {
+  margin-left: 10px;
+}
+
+.session-button {
+    color: white;
+    text-decoration: none;
+    text-align: center; 
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 30px;
+    width: 85px;
+}
+
+.session-button:hover {
+  background-color: #444; /* Change background color on hover */
+}

@@ -1,0 +1,61 @@
+// CONTAINERS
+
+.ebike-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ebike-desc-container {
+    padding-top: 20px;
+    text-align: start;
+}
+
+.ebike-info-container {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ebike-docs-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: 17px;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.ebike-docs-container a {
+    text-decoration: none;
+}
+
+.ebike-tours-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+// TEXT
+
+.ebike-desc-line {
+    font-size: 21px;
+    margin-top: 30px;
+}
+
+.ebike-desc-line::before {
+  content: "\1F6B4";
+  color: #E1752F;
+  font-weight: bold;
+  margin-right: 0px;
+}
+
+.ebike-header {
+    color: var(--wine-orange);
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.ebike-subheader {
+    font-size: 25px;
+    margin-bottom: 10px
+}

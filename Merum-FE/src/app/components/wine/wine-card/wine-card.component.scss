@@ -1,0 +1,52 @@
+.wine-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    // margin: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    height: 800px;
+    font-family: 'Vollkorn', sans-serif;
+    background-color: white;
+  }
+
+  .wine-card-image-container {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 600px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .wine-card-image {
+    height: 580px;
+    transition: 0.3s;
+    transform-origin: center;
+  }
+
+  .wine-card-image:hover{
+    transform: scale(1.1);
+  }
+
+  h2 a {
+    color: #e1752f;
+    text-decoration: none;
+    font-weight: normal;
+  }
+
+  .wine-desc-container {
+    display: block;
+    display: -webkit-box;
+    margin-block-start: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+
+  .archived{
+    background-color: pink;
+  }
+  

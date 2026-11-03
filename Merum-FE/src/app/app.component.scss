@@ -1,0 +1,21 @@
+.router-container{
+    background-image: "assets/pictures/wine_pattern.jpg";
+    padding-top: 65px;
+    flex: 1;
+    padding-bottom: 60px;
+}
+
+router-outlet {
+  min-height: calc(100vh - 60px);
+}
+
+.page-wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html,body{
+  height: 100%;
+  margin: 0;
+}

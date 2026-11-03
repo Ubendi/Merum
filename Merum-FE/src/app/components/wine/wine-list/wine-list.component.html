@@ -1,0 +1,36 @@
+<div class="wine-list-header">
+    <div class="wine-filter-container" (change)="onFilterChanged()">
+        <div class="selector">
+            <label for="location">Régió:</label>
+            <select id="location" name ="location" [(ngModel)]="selectedLocation">
+                <option *ngFor="let l of locations" [value]="l">{{l || 'Összes'}}</option>
+            </select>
+        </div>
+        <div class="selector">
+            <label for="grapeVariety">Szőlőfajta:</label>
+            <select id="grapeVariety" name="grapeVariety" [(ngModel)]="selectedGrapeVariety">
+                <option *ngFor="let gv of grapeVarieties" [value]="gv">{{gv || 'Összes' }}</option>
+            </select>
+        </div>
+        <div class="selector">
+            <label for="year">Évjárat:</label>
+            <select id="year" name="year" [(ngModel)]="selectedYear">
+                <option *ngFor="let y of yearsWithAllSelector" [value]="y">{{y}}</option>
+            </select>
+        </div>
+    </div>
+    @if (this.authService.isLoggedIn()){
+            <div class="admin-controls">
+                <button class="add-wine-button" [routerLink]="['/borok/hozzaadas']">Bor hozzáadása</button>
+                <div class="selector">
+                    <label for="archived">Archív mutatása:</label>
+                    <input type="checkbox" id="archived" name="archived" [checked]="showArchived" (change)="onToggleArchived($event)">
+                </div>
+            </div>
+        }
+</div>
+<div class="wine-list">
+    @for(wine of wines; track wine.id){
+        <app-wine-card [wine] = "wine" [@fadeWineList]></app-wine-card>
+    }
+</div>

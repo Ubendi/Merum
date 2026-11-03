@@ -1,0 +1,6 @@
+<!-- <button [routerLink]="['/teruletek/hozzaadas']">Hozzáadás</button> -->
+<div class="location-list">
+    @for(location of locations; track location.id){
+        <app-location-card [location]="location"></app-location-card>
+    }
+</div>

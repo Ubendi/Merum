@@ -1,0 +1,20 @@
+.dialog-title {
+  color: #5c1a1b;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+mat-dialog-content {
+  background-size: cover;
+  padding: 2rem;
+  border-radius: 8px;
+}

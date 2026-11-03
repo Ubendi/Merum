@@ -1,0 +1,28 @@
+<div class="ebike-tour-card-container" [style.background-image]="'url('+fileBaseUrl+'/'+ebikeTour.picturePath+')'">
+    <h1 class="ebike-tour-card-header">{{ ebikeTour.name }}</h1>
+    <div class="side-box stops">
+        <!--TO FIX: MULTILINE TEXT FOR STOPS-->
+        <h4>Érintett helyek:</h4>
+        <p>{{ ebikeTour.stops}}</p>
+    </div>
+    <div class="side-box details">
+        <table>
+            <tr>
+                <th>Hossz:</th>
+                <td>{{ ebikeTour.distanceKm }} km</td>
+            </tr>
+            <tr>
+                <th>Időtartam:</th>
+                <td>{{ ebikeTour.duration }}</td>
+            </tr>
+            <tr>
+                <th>Szinemelkedés:</th>
+                <td>{{ ebikeTour.elevationGain }} m</td>
+            </tr>
+            <tr>
+                <th>Szintcsökkenés:</th>
+                <td>{{ ebikeTour.elevationLoss }} m</td>
+            </tr>
+        </table>
+    </div>
+</div>    
