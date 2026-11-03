@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit, output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { WineFormViewModel } from '../../../../models/view-models';
@@ -8,7 +8,7 @@ import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/gra
 @Component({
   selector: 'app-wine-form',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './wine-form.component.html',
   styleUrl: './wine-form.component.scss'
 })

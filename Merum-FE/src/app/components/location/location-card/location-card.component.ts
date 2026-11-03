@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LocationsService } from '../../../services/locations.service';
@@ -10,7 +10,7 @@ import { LocationViewModel } from '../../../models/view-models';
 @Component({
   selector: 'app-location-card',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './location-card.component.html',
   styleUrl: './location-card.component.scss'
 })

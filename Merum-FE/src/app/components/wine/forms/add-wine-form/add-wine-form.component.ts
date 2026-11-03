@@ -3,7 +3,7 @@ import { WinesService } from '../../../../services/wines.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LocationDTO } from '../../../../services/locations.service';
-import { CommonModule } from '@angular/common';
+
 import { UploadService } from '../../../../services/generic/upload.service';
 import { GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 import { WineFormComponent } from "../wine-form/wine-form.component";
@@ -14,7 +14,7 @@ import { of, switchMap, tap } from 'rxjs';
 @Component({
   selector: 'app-add-wine-form',
   standalone: true,
-  imports: [FormsModule, RouterModule, CommonModule, WineFormComponent],
+  imports: [FormsModule, RouterModule, WineFormComponent],
   templateUrl: './add-wine-form.component.html',
   styleUrl: './add-wine-form.component.scss'
 })

@@ -4,7 +4,7 @@ import { WinesService } from '../../../../services/wines.service';
 import { UploadService } from '../../../../services/generic/upload.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 import { WineFormComponent } from "../wine-form/wine-form.component";
 import { WineFormViewModel } from '../../../../models/view-models';
@@ -14,7 +14,7 @@ import { of, switchMap, tap } from 'rxjs';
 @Component({
   selector: 'app-edit-wine-form',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, WineFormComponent],
+  imports: [FormsModule, RouterModule, WineFormComponent],
   templateUrl: './edit-wine-form.component.html',
   styleUrl: './edit-wine-form.component.scss'
 })

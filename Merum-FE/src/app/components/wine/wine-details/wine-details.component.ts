@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { AuthService } from '../../../services/generic/auth.service';
 import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-wine-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './wine-details.component.html',
   styleUrl: './wine-details.component.scss'
 })

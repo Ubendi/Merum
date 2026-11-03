@@ -1,3 +1,4 @@
+import { provideZoneChangeDetection } from "@angular/core";
 // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -7,5 +8,5 @@ import { AppComponent } from './app/app.component';
 // sslRootCas.addFile("A:/Programming/Merum/Merum-BE/Certificates/localCert.cer");
 // sslRootCas.Inject();
 
-bootstrapApplication(AppComponent, appConfig)
+bootstrapApplication(AppComponent, {...appConfig, providers: [provideZoneChangeDetection(), ...appConfig.providers]})
   .catch((err) => console.error(err));

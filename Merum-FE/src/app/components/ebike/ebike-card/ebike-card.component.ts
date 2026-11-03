@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EbikeTourDTO, EbikeToursService } from '../../../services/ebike-tours.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-ebike-tour-card',
-  imports: [CommonModule,RouterModule],
+  imports: [RouterModule],
   templateUrl: './ebike-card.component.html',
   styleUrl: './ebike-card.component.scss',
 })

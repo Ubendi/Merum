@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EbikeTourDTO, EbikeToursService } from '../../../services/ebike-tours.service';
 import { EbikeTourCardComponent } from '../ebike-card/ebike-card.component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-ebike-home',
-  imports: [CommonModule,EbikeTourCardComponent],
+  imports: [EbikeTourCardComponent],
   templateUrl: './ebike-home.component.html',
   styleUrl: './ebike-home.component.scss'
 })

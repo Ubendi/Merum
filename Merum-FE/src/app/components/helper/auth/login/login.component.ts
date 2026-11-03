@@ -6,11 +6,11 @@ import { MatInputModule } from '@angular/material/input'
 import { passwordValidator } from '../../../../validators/password.validator';
 import { LoginDTO } from '../../../../services/generic/auth.service';
 import { AuthService } from '../../../../services/generic/auth.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, MatDialogContent, MatLabel, MatFormField, MatInputModule, CommonModule],
+  imports: [ReactiveFormsModule, MatDialogContent, MatLabel, MatFormField, MatInputModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
