@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Merum-BE.Tests\**" />
+    <EmbeddedResource Remove="Merum-BE.Tests\**" />
+    <None Remove="Merum-BE.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".github\copilot-instructions.md" />
+    <None Include=".github\upgrades\scenarios\nuget-package-upgrade\tasks\01-upgrade-automapper\progress-details.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="9.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />

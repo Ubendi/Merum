@@ -13,7 +13,7 @@ namespace Merum_BE.Data.Models
         public string? Description { get; set; }
         [Required]
         public string Stops { get; set; } = null!;
-        public string? ImageUrl { get; set; }
+        public string? PicturePath { get; set; }
         [Required]
         public double DistanceKm { get; set; }
         [Required]

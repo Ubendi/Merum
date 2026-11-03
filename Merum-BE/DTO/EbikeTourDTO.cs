@@ -5,7 +5,7 @@
         public required string Name { get; set; }
         public string? Description { get; set; }
         public required string Stops { get; set; }
-        public string? ImageUrl { get; set; }
+        public string? PicturePath { get; set; }
         public required double DistanceKm { get; set; }
         public required TimeSpan Duration { get; set; }
         public string? Difficulty { get; set; }

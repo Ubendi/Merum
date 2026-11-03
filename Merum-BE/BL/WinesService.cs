@@ -23,14 +23,14 @@ namespace Merum_BE.BL
         public async Task<WineDTO> AddWineServiceAsync(AddWineDTO addWineDTO)
         {
             WineDTO wineDTO = await _unitOfWork.WineRepository.AddWineAsync(addWineDTO);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
             _logger.LogInformation("Wine {0} with ID {1} added", wineDTO.Name, wineDTO.Id);
             return wineDTO;
         }
 
         public async Task<bool> DeleteWineByIdServiceAsync(WineDTO wineDTO)
         {
-            var wine = _unitOfWork.WineRepository.GetWineByIdAsync(wineDTO.Id);
+            var wine = await _unitOfWork.WineRepository.GetWineByIdAsync(wineDTO.Id);
             if (wine == null)
             {
                 return false;
@@ -53,6 +53,18 @@ namespace Merum_BE.BL
             }
             _logger.LogInformation($"Updating wine (id: {updateWineDTO.Id})");
             return await _unitOfWork.WineRepository.UpdateWineAsync(updateWineDTO);
+        }
+
+        public async Task<WineDTO> ArchiveWineServiceAsync(int id)
+        {
+            _logger.LogInformation($"Archiving wine with id {id}");
+            return await _unitOfWork.WineRepository.ArchiveWineAsync(id);
+        }
+
+        public async Task<WineDTO> UnarchiveWineServiceAsync(int id)
+        {
+            _logger.LogInformation($"Unarchiving wine with id {id}");
+            return await _unitOfWork.WineRepository.UnarchiveWineAsync(id);
         }
 
     }

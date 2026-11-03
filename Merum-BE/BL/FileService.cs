@@ -1,4 +1,7 @@
 ﻿using Azure.Core;
+using System.Globalization;
+using System.Text;
+using System.Linq;
 
 namespace Merum_BE.BL
 {
@@ -17,9 +20,11 @@ namespace Merum_BE.BL
             string safeName = String.IsNullOrWhiteSpace(desiredName) ? 
                 Path.GetFileNameWithoutExtension(file.FileName) : desiredName.Trim().ToLower().Replace(" ","-");
 
-            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+            safeName = RemoveAccents(safeName);
+
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
             string extension = Path.GetExtension(file.FileName);
-            string finalFileName = $"{safeName}-{timestamp}{extension}";
+            string finalFileName = $"{timestamp}-{safeName}{extension}";
             var rootDir = Directory.GetCurrentDirectory();
             var targetDirectory = Path.Combine(rootDir, folder, subFolder);
 
@@ -47,5 +52,14 @@ namespace Merum_BE.BL
             }
             await Task.CompletedTask;
         }
+
+        private static string RemoveAccents(string input) =>
+        new string(
+            input.Normalize(NormalizationForm.FormD)
+                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                 .ToArray()
+        )
+        .Normalize(NormalizationForm.FormC);
+
     }
 }

@@ -18,6 +18,8 @@
         public float? SugarFreeExtract { get; set; }
         public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
+        public int? Quantity { get; set; }
+        public bool ArchivedFlag { get; set; }
     }
 
     public class WineDTO : BaseWineDTO

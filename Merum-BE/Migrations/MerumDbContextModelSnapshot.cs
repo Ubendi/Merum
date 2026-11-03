@@ -48,11 +48,11 @@ namespace Merum_BE.Migrations
                     b.Property<double?>("ElevationLoss")
                         .HasColumnType("float");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PicturePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Stops")
@@ -214,6 +214,9 @@ namespace Merum_BE.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("ArchivedFlag")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -235,6 +238,9 @@ namespace Merum_BE.Migrations
 
                     b.Property<string>("PicturePath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<float?>("RealAlc")
                         .HasColumnType("real");

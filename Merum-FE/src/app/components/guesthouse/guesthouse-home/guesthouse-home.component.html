@@ -1,11 +1,19 @@
 <div class="guesthouse-container">
     <div class="guesthouse-carousel-container">
         <div class="guesthouse-carousel">
-            <p>valami</p>
+            <swiper-container navigation="true" effect="fade" loop="true" autoplay-delay="3000" speed="1000">
+                @for(image of guesthouseImages; track image){
+                    <swiper-slide class="swiper-slide">
+                        <img [src]="picturePath+image" alt="Guesthouse image" class="guesthouse-carousel-image">
+                    </swiper-slide>
+                }
+            </swiper-container>
         </div>
     </div>
     <div class="guesthouse-description-container">
-        <p class="guesthouse-header">Vendégház</p>
-        <img class="line-picture-container" src="assets/pictures/line.png" style="width: 80%;">
+        <p class="guesthouse-desc-element header">Vendégház</p>
+        <img class="guesthouse-desc-element line" src="assets/pictures/line.png">
+        <img class="guesthouse-desc-element blueprint" src="assets/pictures/alaprajz.png">
+        <p class="guesthouse-desc-element text">Vendégszobánkat az épület hátsó részében alakítottuk ki, három helyiség összenyitásával, összesen 61 négyzetméteren. A felújítás során igyekeztünk az ódon épület hangulatát megőrizni, egyben elkerülni a vendégházakra jellemző uniformitást. Terveinket önmagunk valósítottuk meg, uniós, állami és lopott pénz felhasználása nélkül. Azokat a vendégeket várjuk elsősorban, akik értékelik Tállya és benne vendégszobánk különleges atmoszféráját.</p>
     </div>
 </div>

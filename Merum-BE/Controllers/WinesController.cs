@@ -51,5 +51,18 @@ namespace Merum_BE.Controllers
         {
             return await _winesService.DeleteWineByIdServiceAsync(GetWineById(id));
         }
+
+        //PATCH
+        [HttpPatch("{id}/archive")]
+        public async Task<WineDTO> ArchiveWineById(int id)
+        {
+            return await _winesService.ArchiveWineServiceAsync(id);
+        }
+
+        [HttpPatch("{id}/unarchive")]
+        public async Task<WineDTO> UnarchiveWineById(int id)
+        {
+            return await _winesService.UnarchiveWineServiceAsync(id);
+        }
     }
 }

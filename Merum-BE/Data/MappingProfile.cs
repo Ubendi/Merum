@@ -19,6 +19,7 @@ namespace Merum_BE.Data
 
             CreateMap<GrapeVarietyEntity, GrapeVarietyDTO>();
 
+            CreateMap<EbikeTourEntity, BaseEbikeTourDTO>();
 
         }
     }

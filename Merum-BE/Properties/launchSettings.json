@@ -29,12 +29,20 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "NoSwagger": {
+    "DevPC": {
       "commandName": "Project",
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7147;http://localhost:5127",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "DevLaptop": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7147;http://localhost:5127",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "DevelopmentLaptop"
       }
     },
     "IIS Express": {

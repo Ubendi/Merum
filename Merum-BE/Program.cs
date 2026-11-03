@@ -52,6 +52,7 @@ builder.Services.AddScoped<GrapeVarietiesService>();
 builder.Services.AddScoped<EbikeToursService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<FileService>();
+builder.Services.AddScoped<GuesthouseService>();
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
     .AddCertificate();
 

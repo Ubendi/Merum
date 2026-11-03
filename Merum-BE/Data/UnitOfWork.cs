@@ -4,22 +4,16 @@ using AutoMapper;
 
 namespace Merum_BE.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork
     {
         private readonly MerumDbContext _dbContext;
         private readonly ILogger _logger;
-        private readonly IMapper? _mapper;
+        private readonly IMapper _mapper;
 
         private WineRepository? _wineRepository;
         private LocationRepository? _locationRepository;
         private GrapeVarietyRepository? _grapeVarietyRepository;
-
-        #region Constructor
-        //public UnitOfWork (MerumDbContext dbContext, ILogger<UnitOfWork> logger)
-        //{
-        //    _dbContext = dbContext;
-        //    _logger = logger;
-        //}
+        private EbikeTourRepository? _ebikeTourRepository;
 
         public UnitOfWork (MerumDbContext dbContext, ILogger<UnitOfWork> logger, IMapper mapper)
         {
@@ -27,8 +21,6 @@ namespace Merum_BE.Data
             _logger = logger;
             _dbContext = dbContext;
         }
-        #endregion
-
         public WineRepository WineRepository
         {
             get
@@ -56,15 +48,19 @@ namespace Merum_BE.Data
             }
         }
 
-        public void Commit()
+        public EbikeTourRepository EbikeTourRepository
         {
-            _logger.LogDebug("Saving changes to DB...");
-            _dbContext.SaveChanges();
+            get
+            {
+                _ebikeTourRepository ??= new EbikeTourRepository(_dbContext, _mapper);
+                return _ebikeTourRepository;
+            }
         }
 
-        public void Dispose() 
-        { 
-            _dbContext.Dispose();
+        public async Task CommitAsync(CancellationToken cancellationToken = default)
+        {
+            _logger.LogDebug("Saving changes to DB...");
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

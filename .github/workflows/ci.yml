@@ -1,0 +1,32 @@
+name: Merum Build, Test, Deploy
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_PREXIF: ghcr.io/${{ github.repository_owner }}/merum
+
+jobs:
+    backend:
+        name: Build & Test .NET Backend API
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+    frontend:
+        name: Build & Test Angular Frontend
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+    terraform:
+        name: Terraform Format & Validate
+        runs-on: ubuntu-latest
+
+    deploy-local:
+        name: Deploy to local Docker
+        if: github.ref == 'refs/heads/main'
+        needs: [backend, frontend, terraform]
+        runs-on: [self-hosted, merum-local]

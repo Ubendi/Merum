@@ -17,7 +17,7 @@ namespace Merum_BE.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<ActionResult> Upload (IFormFile file, [FromForm] string folder, [FromForm] string subFolder, [FromForm] string? desiredName)
+        public async Task<ActionResult> UploadFile (IFormFile file, [FromForm] string folder, [FromForm] string subFolder, [FromForm] string? desiredName)
         {
             var relativePath = await _uploadService.UploadFileAsync(file, folder, subFolder, desiredName);
             return Ok(new { path = relativePath });

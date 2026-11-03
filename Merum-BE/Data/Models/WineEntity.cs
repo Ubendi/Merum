@@ -33,6 +33,8 @@ namespace Merum_BE.Data.Models
         public float? SugarFreeExtract { get; set; }
         public float? TitratableAcid { get; set; }
         public string? PicturePath { get; set; }
+        public int? Quantity { get; set; }
+        public bool ArchivedFlag {  get; set; }
     }
 
     public interface IWineRepository
@@ -71,26 +73,28 @@ namespace Merum_BE.Data.Models
 
         public async Task<WineDTO?> GetWineByIdAsync(int id)
         {
-            var wineEntity = await _dbContext.Set<WineEntity>().Include(w => w.LocationEntityId)
+            var wineEntity = await _dbContext.Set<WineEntity>()
+                .Include(w => w.LocationEntity)
                 .FirstOrDefaultAsync(w => w.Id == id);
             if (wineEntity == null)
             {
-                return      null;
+                return null;
             }
-            return _mapper.Map<WineEntity, WineDTO>(wineEntity); ;
+            return _mapper.Map<WineEntity, WineDTO>(wineEntity);
         }
 
         public async Task<WineDTO> AddWineAsync(AddWineDTO addWineDTO)
         {
             WineEntity wineEntity = _mapper.Map<AddWineDTO, WineEntity>(addWineDTO);
             await _dbContext.AddAsync(wineEntity);
+            await _dbContext.SaveChangesAsync();
             return _mapper.Map<WineEntity, WineDTO>(wineEntity);
         }
 
         public async Task<bool> DeleteWineByIdAsync(WineDTO wineDTO)
         {
-            var wineEntity = _dbContext.Set<WineEntity>()
-                .FirstOrDefault(w => w.Id == wineDTO.Id);
+            var wineEntity = await _dbContext.Set<WineEntity>()
+                .FirstOrDefaultAsync(w => w.Id == wineDTO.Id);
 
             if (wineEntity != null)
             {
@@ -103,16 +107,16 @@ namespace Merum_BE.Data.Models
 
         public async Task<WineDTO> UpdateWineAsync(UpdateWineDTO updateWineDTO)
         {
-            var wineEntity = _dbContext.Set<WineEntity>()
+            var wineEntity = await _dbContext.Set<WineEntity>()
                 .Include(w => w.LocationEntity)
-                .FirstOrDefault(w => w.Id == updateWineDTO.Id);
-            _mapper.Map(updateWineDTO, wineEntity);
+                .FirstOrDefaultAsync(w => w.Id == updateWineDTO.Id);
 
             if (wineEntity == null)
             {
                 throw new KeyNotFoundException($"Wine with ID {updateWineDTO.Id} not found.");
             }
 
+            _mapper.Map(updateWineDTO, wineEntity);
             _dbContext.Set<WineEntity>().Update(wineEntity);
             await _dbContext.SaveChangesAsync();
             return _mapper.Map<WineEntity, WineDTO>(wineEntity);
@@ -122,6 +126,36 @@ namespace Merum_BE.Data.Models
         {
             return _dbContext.Set<WineEntity>()
                 .Any(w => w.PicturePath == picturePath);
+        }
+
+        public async Task<WineDTO> ArchiveWineAsync(int id)
+        {
+            var wineEntity = await _dbContext.Set<WineEntity>()
+                .FirstOrDefaultAsync(w => w.Id == id);
+
+            if (wineEntity == null)
+            {
+                throw new KeyNotFoundException($"Wine with ID {id} not found.");
+            }
+
+            wineEntity.ArchivedFlag = true;
+            await _dbContext.SaveChangesAsync();
+            return _mapper.Map<WineEntity,WineDTO>(wineEntity);
+        }
+
+        public async Task<WineDTO> UnarchiveWineAsync(int id)
+        {
+            var wineEntity = await _dbContext.Set<WineEntity>()
+                .FirstOrDefaultAsync(w => w.Id == id);
+
+            if ( wineEntity == null)
+            {
+                throw new KeyNotFoundException($"Wine with ID {id} not found.");
+            }
+
+            wineEntity.ArchivedFlag = false;
+            await _dbContext.SaveChangesAsync();
+            return _mapper.Map<WineEntity,WineDTO>(wineEntity);
         }
 
     }
