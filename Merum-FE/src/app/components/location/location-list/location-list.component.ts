@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { LocationDTO, LocationsService } from '../../../services/locations.service';
 
 import { LocationCardComponent } from '../location-card/location-card.component';
@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-location-list',
   imports: [LocationCardComponent, RouterModule],
   templateUrl: './location-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './location-list.component.scss'
 })
 export class LocationListComponent implements OnInit {

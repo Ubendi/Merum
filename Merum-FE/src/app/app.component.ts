@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./components/helper/nav-bar/nav-bar-component.component";
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -10,6 +10,7 @@ import { FooterComponent } from "./components/helper/footer/footer.component";
   imports: [RouterOutlet, NavBarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [

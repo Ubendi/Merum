@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../auth/login/login.component';
 import { AuthService } from '../../../services/generic/auth.service';
@@ -8,6 +8,7 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-footer',
   imports: [MatDialogModule, RouterModule],
   templateUrl: './footer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {

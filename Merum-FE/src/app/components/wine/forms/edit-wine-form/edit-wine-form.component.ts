@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
 import { WinesService } from '../../../../services/wines.service';
 import { UploadService } from '../../../../services/generic/upload.service';
@@ -16,6 +16,7 @@ import { of, switchMap, tap } from 'rxjs';
   standalone: true,
   imports: [FormsModule, RouterModule, WineFormComponent],
   templateUrl: './edit-wine-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './edit-wine-form.component.scss'
 })
 export class EditWineFormComponent implements OnInit {

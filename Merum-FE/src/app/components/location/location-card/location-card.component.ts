@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LocationsService } from '../../../services/locations.service';
 import { GrapeVarietyDTO, GrapeVarietiesService } from '../../../services/grape-varieties.service';
@@ -12,6 +12,7 @@ import { LocationViewModel } from '../../../models/view-models';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './location-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './location-card.component.scss'
 })
 

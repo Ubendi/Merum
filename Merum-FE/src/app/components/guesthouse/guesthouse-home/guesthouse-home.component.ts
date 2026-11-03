@@ -1,4 +1,4 @@
-import { Component, OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { register } from 'swiper/element/bundle'
 import { environment } from '../../../../environments/environment';
 import { GuesthouseService } from '../../../services/guesthouse.service';
@@ -10,6 +10,7 @@ register();
   imports: [],
   templateUrl: './guesthouse-home.component.html',
   styleUrl: './guesthouse-home.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GuesthouseHomeComponent implements OnInit {

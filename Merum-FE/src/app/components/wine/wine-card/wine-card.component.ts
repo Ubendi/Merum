@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './wine-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './wine-card.component.scss'
 })
 

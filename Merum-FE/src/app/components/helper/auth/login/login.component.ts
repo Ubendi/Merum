@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogContent, MatDialogRef } from "@angular/material/dialog";
 import { MatLabel, MatFormField } from '@angular/material/select';
@@ -12,6 +12,7 @@ import { AuthService } from '../../../../services/generic/auth.service';
   selector: 'app-login',
   imports: [ReactiveFormsModule, MatDialogContent, MatLabel, MatFormField, MatInputModule],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { WineCardComponent } from '../wine-card/wine-card.component';
 import { WinesService } from '../../../services/wines.service';
 import { WineDTO } from '../../../services/wines.service';
@@ -15,6 +15,7 @@ import { AuthService } from '../../../services/generic/auth.service';
   imports: [WineCardComponent, RouterModule, MatSelectModule, FormsModule],
   templateUrl: './wine-list.component.html',
   styleUrl: './wine-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('fadeWineList', [
       transition(':enter', [

@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { WineFormViewModel } from '../../../../models/view-models';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
@@ -10,6 +10,7 @@ import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/gra
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './wine-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './wine-form.component.scss'
 })
 export class WineFormComponent implements OnInit {

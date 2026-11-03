@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EbikeTourDTO, EbikeToursService } from '../../../services/ebike-tours.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-ebike-tour-card',
   imports: [RouterModule],
   templateUrl: './ebike-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ebike-card.component.scss',
 })
 export class EbikeTourCardComponent implements OnInit {

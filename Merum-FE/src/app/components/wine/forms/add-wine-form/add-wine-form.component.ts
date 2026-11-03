@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { WinesService } from '../../../../services/wines.service'; 
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { of, switchMap, tap } from 'rxjs';
   standalone: true,
   imports: [FormsModule, RouterModule, WineFormComponent],
   templateUrl: './add-wine-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './add-wine-form.component.scss'
 })
 export class AddWineFormComponent {
