@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { LocationDTO, LocationsService } from '../../../services/locations.service';
 
 import { LocationCardComponent } from '../location-card/location-card.component';
@@ -8,15 +8,12 @@ import { RouterModule } from '@angular/router';
   selector: 'app-location-list',
   imports: [LocationCardComponent, RouterModule],
   templateUrl: './location-list.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './location-list.component.scss'
 })
 export class LocationListComponent implements OnInit {
+  private locationsService = inject(LocationsService);
   locations: LocationDTO[] = [];
-
-  constructor(
-    private locationsService: LocationsService
-  ){}
 
   ngOnInit(): void {
     this.loadLocations();

@@ -1,56 +1,65 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { WinesService } from '../../../../services/wines.service'; 
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LocationDTO } from '../../../../services/locations.service';
 
-import { UploadService } from '../../../../services/generic/upload.service';
+import { UploadService, UploadResponse } from '../../../../services/generic/upload.service';
 import { GrapeVarietyDTO } from '../../../../services/grape-varieties.service';
 import { WineFormComponent } from "../wine-form/wine-form.component";
 import { WineFormViewModel } from '../../../../models/view-models';
 import { mapWineVmToAddWineDto } from '../../../../models/mapper';
-import { of, switchMap, tap } from 'rxjs';
+import { switchMap } from 'rxjs';
+import { WineDTO } from '../../../../services/wines.service';
 
 @Component({
   selector: 'app-add-wine-form',
   standalone: true,
   imports: [FormsModule, RouterModule, WineFormComponent],
   templateUrl: './add-wine-form.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './add-wine-form.component.scss'
 })
 export class AddWineFormComponent {
+  private winesService = inject(WinesService);
+  private uploadService = inject(UploadService);
+  private router = inject(Router);
 
   locations: LocationDTO[] = [];
   grapeVarieties: GrapeVarietyDTO[] = [];
     
   selectedFile: File | null = null;
 
-  constructor(
-    private winesService: WinesService,
-    private uploadService: UploadService,
-    private router: Router
-  ){}
-
-  addWine({ value, file}: {value: WineFormViewModel, file?: File}){
+  addWine({ value, file}: {value: WineFormViewModel, file?: File}): void {
     const dto = mapWineVmToAddWineDto(value);
 
-    const add$ = file ? this.uploadService.uploadFile(file, 'Pics', 'Wines', value.name) : of(null);
-    
-    add$.pipe(
-      tap(result => {
-        if(result) dto.picturePath = result.path;
-      }),
-      switchMap(() => this.winesService.addWine(dto))
-    ).subscribe({
-      next: response => {
-        alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
-        console.log(response)
-        this.router.navigate([`/borok/${response.id}`])
-      }, error: err => {
-        alert('Hiba történt');
-        console.error('Error adding wine ', err);
-      }
-    })
+    if (file) {
+      this.uploadService.uploadFile(file, 'Pics', 'Wines', value.name).pipe(
+        switchMap((result: UploadResponse) => {
+          dto.picturePath = result.path;
+          return this.winesService.addWine(dto);
+        })
+      ).subscribe({
+        next: (response: WineDTO) => {
+          alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
+          console.log(response);
+          this.router.navigate([`/borok/${response.id}`]);
+        }, error: (err: unknown) => {
+          alert('Hiba történt');
+          console.error('Error adding wine ', err);
+        }
+      });
+    } else {
+      this.winesService.addWine(dto).subscribe({
+        next: (response: WineDTO) => {
+          alert(`Bor sikeresen hozzáadva: ${response.name} (${response.year})`);
+          console.log(response);
+          this.router.navigate([`/borok/${response.id}`]);
+        }, error: (err: unknown) => {
+          alert('Hiba történt');
+          console.error('Error adding wine ', err);
+        }
+      });
+    }
   }
 }

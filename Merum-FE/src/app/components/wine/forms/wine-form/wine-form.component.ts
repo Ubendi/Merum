@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, output, SimpleChanges, ChangeDetectionStrategy, OnChanges, inject } from '@angular/core';
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { WineFormViewModel } from '../../../../models/view-models';
 import { LocationDTO, LocationsService } from '../../../../services/locations.service';
@@ -10,12 +10,15 @@ import { GrapeVarietiesService, GrapeVarietyDTO } from '../../../../services/gra
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './wine-form.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './wine-form.component.scss'
 })
-export class WineFormComponent implements OnInit {
+export class WineFormComponent implements OnInit, OnChanges {
+  private locationsService = inject(LocationsService);
+  private gvService = inject(GrapeVarietiesService);
+  private fb = inject(FormBuilder);
   @Input() mode: 'create' | 'edit' = 'edit';
-  @Input() title: string = "Test";
+  @Input() title = "Test";
   @Input() initialValue?: WineFormViewModel;
 
   wineFormSubmit = output<{ value: WineFormViewModel, file?: File}>();
@@ -23,12 +26,6 @@ export class WineFormComponent implements OnInit {
   locations: LocationDTO[] = [];
   grapeVarieties: GrapeVarietyDTO[] = [];
   file?: File;
-
-  constructor(
-    private locationsService: LocationsService,
-    private gvService: GrapeVarietiesService,
-    private fb: FormBuilder
-  ){}
 
   form = this.fb.group({
     name: this.fb.nonNullable.control<string>('AddWineTest', {validators: Validators.required}),
@@ -71,8 +68,8 @@ export class WineFormComponent implements OnInit {
     });
   }
 
-  onPictureSelected(event: any): void{
-    this.file = event.target.files[0];
+  onPictureSelected(event: Event): void{
+    this.file = (event.target as HTMLInputElement).files?.[0];
   }
 
   loadGrapeVarieties(){

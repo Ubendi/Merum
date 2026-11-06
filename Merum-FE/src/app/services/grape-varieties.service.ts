@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface GrapeVarietyDTO {
@@ -13,10 +13,8 @@ export interface GrapeVarietyDTO {
 })
 
 export class GrapeVarietiesService {
-
+  private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
-
-  constructor(private http: HttpClient) { }
 
   getAllGrapeVarieties(): Observable<GrapeVarietyDTO[]>{
     return this.http.get<GrapeVarietyDTO[]>(`${this.apiUrl}/grapeVarieties/getAllGrapeVarieties`);

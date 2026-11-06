@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment'
@@ -47,10 +47,8 @@ export interface UpdateWineDTO extends WineBase {
   providedIn: 'root'
 })
 export class WinesService {
-
+  private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/wines`;
-
-  constructor(private http: HttpClient) { }
 
   getAllWines(): Observable<WineDTO[]>{
     return this.http.get<WineDTO[]>(`${this.apiUrl}/getAllWines`);

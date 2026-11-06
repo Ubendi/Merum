@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-contact-home',
   imports: [],
   templateUrl: './contact-home.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './contact-home.component.scss'
 })
 export class ContactHomeComponent {

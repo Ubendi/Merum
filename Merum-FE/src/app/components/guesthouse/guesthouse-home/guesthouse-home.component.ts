@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, inject } from '@angular/core';
 import { register } from 'swiper/element/bundle'
 import { environment } from '../../../../environments/environment';
 import { GuesthouseService } from '../../../services/guesthouse.service';
@@ -10,14 +10,13 @@ register();
   imports: [],
   templateUrl: './guesthouse-home.component.html',
   styleUrl: './guesthouse-home.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GuesthouseHomeComponent implements OnInit {
+  private guesthouseService = inject(GuesthouseService);
   guesthouseImages: string[]=[];
   public picturePath: string = environment.fileUrl+'/Pics/Guesthouse/'
-
-  constructor(private guesthouseService: GuesthouseService) {}
 
   ngOnInit(): void {
     this.loadGuesthouseImages();

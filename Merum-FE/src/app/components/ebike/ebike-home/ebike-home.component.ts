@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { EbikeTourDTO, EbikeToursService } from '../../../services/ebike-tours.service';
 import { EbikeTourCardComponent } from '../ebike-card/ebike-card.component';
 
@@ -7,15 +7,12 @@ import { EbikeTourCardComponent } from '../ebike-card/ebike-card.component';
   selector: 'app-ebike-home',
   imports: [EbikeTourCardComponent],
   templateUrl: './ebike-home.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './ebike-home.component.scss'
 })
 export class EbikeHomeComponent implements OnInit {
+  private ebikeToursService = inject(EbikeToursService);
   ebikeTours: EbikeTourDTO[] = [];
-
-  constructor(
-    private ebikeToursService: EbikeToursService
-  ) {}
 
   ngOnInit(): void {
     this.loadEbikeTours();

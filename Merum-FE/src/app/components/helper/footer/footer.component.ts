@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../auth/login/login.component';
 import { AuthService } from '../../../services/generic/auth.service';
@@ -8,15 +8,13 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-footer',
   imports: [MatDialogModule, RouterModule],
   templateUrl: './footer.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  constructor(
-    private dialog: MatDialog,
-    private router: Router,
-    public authService: AuthService
-  ) {};
+  private dialog = inject(MatDialog);
+  private router = inject(Router);
+  public authService = inject(AuthService);
 
   openLoginDialog(event: Event): void {
     event.preventDefault();

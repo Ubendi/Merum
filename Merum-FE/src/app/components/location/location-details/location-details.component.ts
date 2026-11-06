@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-location-details',
   imports: [],
   templateUrl: './location-details.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './location-details.component.scss'
 })
 export class LocationDetailsComponent {

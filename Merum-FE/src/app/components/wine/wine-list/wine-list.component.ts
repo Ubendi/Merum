@@ -1,11 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { WineCardComponent } from '../wine-card/wine-card.component';
 import { WinesService } from '../../../services/wines.service';
 import { WineDTO } from '../../../services/wines.service';
 
 import { RouterModule } from '@angular/router';
-import { MatSelectModule, MatOption } from '@angular/material/select'
-import { FormsModule, NgModel } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select'
+import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AuthService } from '../../../services/generic/auth.service';
 
@@ -15,7 +15,7 @@ import { AuthService } from '../../../services/generic/auth.service';
   imports: [WineCardComponent, RouterModule, MatSelectModule, FormsModule],
   templateUrl: './wine-list.component.html',
   styleUrl: './wine-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeWineList', [
       transition(':enter', [
@@ -29,6 +29,8 @@ import { AuthService } from '../../../services/generic/auth.service';
   ]
 })
 export class WineListComponent implements OnInit {
+  private winesService = inject(WinesService);
+  public authService = inject(AuthService);
   wines: WineDTO[] = [];
   allWines: WineDTO[] = [];
   grapeVarieties: string[] = [];
@@ -38,12 +40,7 @@ export class WineListComponent implements OnInit {
   selectedGrapeVariety?: string;
   selectedYear?: (number|string);
   selectedLocation?: string;
-  showArchived: boolean = false;
-
-  constructor(
-    private winesService: WinesService,
-    public authService: AuthService
-  ){}
+  showArchived = false;
 
   ngOnInit(): void {
     this.loadWines();

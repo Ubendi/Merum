@@ -10,7 +10,7 @@
         <mat-label>Jelszó</mat-label>
         <input matInput formControlName="password" type="password" required>
       </mat-form-field>
-      @if (errorMessage != '') {
+      @if (errorMessage !== '') {
         <div class="error" role="alert">
           {{ errorMessage }}
         </div>
