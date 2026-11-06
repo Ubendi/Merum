@@ -1,10 +1,10 @@
 
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LocationsService } from '../../../services/locations.service';
 import { GrapeVarietyDTO, GrapeVarietiesService } from '../../../services/grape-varieties.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { forkJoin, map, Observable, of, switchMap } from 'rxjs';
+import { forkJoin, map, Observable, of } from 'rxjs';
 import { LocationViewModel } from '../../../models/view-models';
 
 @Component({
@@ -12,19 +12,16 @@ import { LocationViewModel } from '../../../models/view-models';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './location-card.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './location-card.component.scss'
 })
 
 export class LocationCardComponent implements OnInit {
+  private grapeVarietyService = inject(GrapeVarietiesService);
+  private locationService = inject(LocationsService);
+  private route = inject(ActivatedRoute);
+  private sanitizer = inject(DomSanitizer);
  @Input() location!: LocationViewModel;
-
-    constructor(
-      private grapeVarietyService: GrapeVarietiesService,
-      private locationService: LocationsService,
-      private route: ActivatedRoute,
-      private sanitizer: DomSanitizer
-    ){}
 
     ngOnInit(): void {
       this.loadLocationById();

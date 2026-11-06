@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -16,22 +16,22 @@ export interface RegisterDTO {
   confirmPassword: string 
 }
 
+export interface AuthResponse {
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID);
   private apiUrl = environment.apiUrl;
-  private isBrowser: boolean
+  private isBrowser = isPlatformBrowser(this.platformId)
 
-  constructor(private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ){
-    this.isBrowser = isPlatformBrowser(this.platformId)
-  }
-
-  login(data: LoginDTO): Observable<any>{
-    return this.http.post(`${this.apiUrl}/auth/login`, data).pipe(
-      tap((res: any) => {
+  login(data: LoginDTO): Observable<AuthResponse>{
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, data).pipe(
+      tap((res: AuthResponse) => {
         if (typeof window !== 'undefined' && window.localStorage) {
           if(this.isBrowser){
             localStorage.setItem('token', res.token);

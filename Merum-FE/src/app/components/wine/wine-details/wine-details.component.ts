@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { WineDTO, WinesService } from '../../../services/wines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,21 +10,18 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [],
   templateUrl: './wine-details.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './wine-details.component.scss'
 })
 
 
 export class WineDetailsComponent implements OnInit {
+  private winesService = inject(WinesService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  public authService = inject(AuthService);
   wine!: WineDTO;
   public fileBaseUrl = environment.fileUrl;
-
-  constructor(
-    private winesService: WinesService,
-    private route: ActivatedRoute,
-    private router: Router,
-    public authService: AuthService
-  ){}
 
   ngOnInit(): void {
     this.loadWine();

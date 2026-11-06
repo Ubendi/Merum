@@ -10,7 +10,7 @@ import { FooterComponent } from "./components/helper/footer/footer.component";
   imports: [RouterOutlet, NavBarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [

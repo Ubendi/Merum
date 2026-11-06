@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,9 +20,8 @@ export interface EbikeTourDTO {
   providedIn: 'root',
 })
 export class EbikeToursService {
+  private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/ebikeTours`;
-
-  constructor(private http: HttpClient){}
 
   getAllEbikeTours(): Observable<EbikeTourDTO[]>{
     return this.http.get<EbikeTourDTO[]>(`${this.apiUrl}/getAllEbikeTours`);

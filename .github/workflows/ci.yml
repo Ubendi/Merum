@@ -9,6 +9,7 @@ on:
 env:
     REGISTRY: ghcr.io
     IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}/merum
+    DOTNET_ROOT: /usr/share/dotnet
 
 jobs:
     backend:
@@ -16,21 +17,101 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Check Backend
-              run: echo "Backend works"
+
+            - name: Setup dotnet
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: "9.0.x"
+                cache: true
+                cache-dependency-path: Merum-BE/**/*.csproj
+
+            - name: Restore
+              run: dotnet restore Merum-BE/Merum-BE.sln
+              working-directory: .
+
+            - name: Build
+              run: dotnet build Merum-BE/Merum-BE.sln --no-restore --configuration Release
+              working-directory: .
+
+            - name: Test
+              run: dotnet test Merum-BE/Merum-BE.sln --no-build --configuration Release --logger trx --results-directory TestResults
+              working-directory: .
+
+            - name: Upload Test Results
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                name: dotnet-test-results
+                path: TestResults/*.trx
+
     frontend:
         name: Build & Test Angular Frontend
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Check Frontend
-              run: echo "Frontend works"
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                 node-version: 20
+                 cache: 'npm'
+                 cache-dependency-path: Merum-FE/package-lock.json
+
+            - name: Install dependencies
+              run: npm ci
+              working-directory: Merum-FE
+
+            - name: Lint
+              run: npm run lint --if-present
+              working-directory: Merum-FE
+
+            - name: Test
+              run: npx ng test --watch=false --browsers=ChromeHeadless --no-progress --code-coverage
+              working-directory: Merum-FE
+
+            - name: Upload Test Coverage
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                name: frontend-coverage
+                path: Merum-FE/coverage/
+
+            - name: Build
+              run: npm run build
+              working-directory: Merum-FE
+
+            - name: Upload Build Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: frontend-build
+                path: Merum-FE/dist/
+
     terraform:
         name: Terraform Format & Validate
         runs-on: ubuntu-latest
         steps:
-            - name: Check Terraform
-              run: echo "Terraform works"
+            - uses: actions/checkout@v4
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: "1.9.x"
+
+            - name: fmt
+              run: terraform fmt -check -recursive
+              working-directory: terraform
+
+            - name: init
+              run: terraform init -backend=false -input=false
+              working-directory: terraform
+
+            - name: validate
+              run: terraform validate
+              working-directory: terraform
+
+            - name: plan (dry-run)
+              run: terraform plan -input=false -no-color
+              working-directory: terraform
 
     deploy-local:
         name: Deploy to local Docker
@@ -38,5 +119,14 @@ jobs:
         needs: [backend, frontend, terraform]
         runs-on: [self-hosted, merum-local]
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Download Frontend Build
+              uses: actions/download-artifact@v4
+              with:
+                name: frontend-build
+                path: Merum-FE/dist/
+
             - name: Check Deploy
-              run: echo "Deploy works"
+              run: echo "Deploy works - artifacts downloaded"
