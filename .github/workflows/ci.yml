@@ -67,7 +67,7 @@ jobs:
               working-directory: Merum-FE
 
             - name: Test
-              run: npx ng test --watch=false --browsers=ChromeHeadless --no-progress --code-coverage
+              run: npx ng test --watch=false --browsers=FirefoxHeadless --no-progress --code-coverage
               working-directory: Merum-FE
 
             - name: Upload Test Coverage
